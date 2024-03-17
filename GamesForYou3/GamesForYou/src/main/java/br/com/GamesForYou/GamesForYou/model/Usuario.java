@@ -21,10 +21,13 @@ public class Usuario {
     private String email;
     @Column(name = "senha", columnDefinition  = "TEXT", nullable = true)
     private String senha;
-    @Column(name = "cpf", length = 14, nullable = true)
+    @Column(name = "cpf", length = 11, nullable = true, unique = true)
     private String cpf;
-    @Column(name = "nivel", length = 15, nullable = true)
-    private String nivel;
+    @Column(name = "nivel", nullable = false)
+    private Integer nivel;
+    @Column(name = "status", nullable = false)
+    private Boolean status;
+    
 
    
     public int getId() {
@@ -54,11 +57,20 @@ public class Usuario {
     public void setCpf(String cpf) {
        this.cpf = cpf;
      }
-    public String getNivel() {
+    public Integer getNivel() {
       return nivel;
     }
-    public void setNivel(String nivel) {
+    public void setNivel(Integer nivel) {
       this.nivel = nivel;
+    }
+    public String getCpf() {
+      return cpf;
+    }
+    public Boolean getStatus() {
+      return status;
+    }
+    public void setStatus(Boolean status) {
+      this.status = status;
     }
     
   

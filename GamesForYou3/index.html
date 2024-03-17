@@ -5,21 +5,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cadastro</title>
-  <script src="script.js" defer></script>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
   <div class="box">
     <h1>Cadastro</h1>
-    <form action="">
-      <input type="text" class="nome" name="nome" placeholder="Nome">
-      <input type="text" class="email" name="email" placeholder="Email">
-      <input type="password" class="senha" name="senha" placeholder="Senha">
-      <input type="text" class="tel" name="tel" placeholder="Telefone">
-      <button>Cadastrar</button>
+    <form id="formCadastro">
+      <input type="text" class="nome" name="nome" placeholder="Nome" required>
+      <input type="email" class="email" name="email" placeholder="Email" required>
+      <input type="password" class="senha" name="senha" id="senha" placeholder="Senha" required>
+      <input type="password" class="confirmar-senha" id="confirmarSenha" placeholder="Confirmar Senha" required>
+      <input type="text" class="cpf" name="cpf" placeholder="CPF (somente números)" maxlength="11" pattern="\d*" required>
+      <select class="nivel" name="nivel" required>
+        <option value="0">Nível 0</option>
+        <option value="1">Nível 1</option>
+        <option value="2">Nível 2</option>
+        <option value="3">Nível 3</option>
+      </select>
+      <label for="status">Status:</label>
+      <input type="checkbox" class="status" name="status" id="status" checked>
+      <button type="submit">Cadastrar</button>
     </form>
   </div>
+  <script src="script.js" defer></script>
 </body>
 
 </html>
