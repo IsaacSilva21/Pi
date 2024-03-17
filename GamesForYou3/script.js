@@ -1,8 +1,9 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   const formulario = document.getElementById("formCadastro");
 
-  if (formulario) { // Verifica se o formulário foi encontrado no DOM
-    formulario.addEventListener("submit", function(event) {
+  if (formulario) {
+    // Verifica se o formulário foi encontrado no DOM
+    formulario.addEventListener("submit", function (event) {
       event.preventDefault();
 
       // Seleciona os elementos do formulário
@@ -27,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
         senha: Isenha.value,
         cpf: Icpf.value,
         nivel: Inivel.value,
-        status: Istatus.checked
+        status: true,
       };
 
       // Envia os dados para o servidor
@@ -39,14 +40,14 @@ document.addEventListener("DOMContentLoaded", function() {
         method: "POST",
         body: JSON.stringify(userData),
       })
-      .then(function (res) {
-        console.log(res);
-        // Limpa os campos após o envio bem-sucedido
-        limpar();
-      })
-      .catch(function (error) {
-        console.error("Erro ao enviar os dados:", error);
-      });
+        .then(function (res) {
+          console.log(res);
+          // Limpa os campos após o envio bem-sucedido
+          limpar();
+        })
+        .catch(function (error) {
+          console.error("Erro ao enviar os dados:", error);
+        });
     });
 
     // Função para limpar os campos do formulário

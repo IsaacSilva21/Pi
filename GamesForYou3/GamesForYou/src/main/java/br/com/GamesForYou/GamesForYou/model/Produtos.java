@@ -1,7 +1,5 @@
 package br.com.GamesForYou.GamesForYou.model;
 
-import org.springframework.boot.autoconfigure.web.WebProperties.Resources.Chain.Strategy;
-import org.springframework.cglib.core.GeneratorStrategy;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
