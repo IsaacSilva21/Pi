@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/Pi/GamesForYou3/Front/Css/listUsuarios.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet">
+  <title>Inicio</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="box">
+      <h1>Lista de Usuarios</h1>
+      <button id="add">Adicionar Usuario</button>
+      <div class="cabecalho">
+        <span>Nome</span>
+        <span>Email</span>
+        <span>Status</span>
+        <span>Alterar</span>
+        <span>Habilitar/Desabilitar</span>
+      </div>
+      <div class="renderizados">
+        <ul id="listaUsuarios"></ul>
+      </div>
+    </div>
+  </div>
+  <script src="/Pi/GamesForYou3/Front/Javascript/listUsuarios.js"></script>
+  <script> // Obtém uma referência para o botão pelo ID
+    var botao = document.getElementById('add');
+
+    // Adiciona um ouvinte de evento 'click' ao botão
+    botao.addEventListener('click', function () {
+      // Redireciona para outra página HTML
+      window.location.href = 'Cadastro.html';
+    });</script>
+</body>
+
+</html>
