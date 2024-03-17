@@ -1,0 +1,19 @@
+create database banco_de_usuarios;
+use banco_de_usuarios;
+
+CREATE TABLE usuario (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL UNIQUE,
+    senha TEXT NOT NULL,
+    cpf VARCHAR(11) NOT NULL UNIQUE,
+    nivel INTEGER NOT NULL CHECK (nivel >= 0 AND nivel <= 3),
+    status BOOLEAN NOT NULL
+);
+
+
+INSERT INTO usuario VALUES (null, 'adm', 'dddono@eEmail.com', 'password', '25354326746', 1, true);
+
+
+select * from usuario; 
+
