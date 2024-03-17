@@ -58,7 +58,53 @@ input {
 }
 
 button {
-  width: 150px;
+  width: 100px;
   height: 35px;
+  align-items: center;
+  justify-content: center;
+}
+
+.cabecalho {
+  width: 700px;
+  margin: 0 auto;
+  background-color: blue;
+  border-radius: 10px 10px 0 0;
+}
+
+.cabecalho span {
+  display: inline-block;
+  font-size: large;
+  font-weight: bold;
+  color: #fff;
+  font-family: "Anta", sans-serif;
+  padding: 10px;
+  margin: 0 5px;
+  margin-left: 15px;
+}
+
+p {
+  border: 1px solid blue;
+  padding-left: 10px;
+}
+
+p,
+button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.renderizados {
+  width: 700px;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+#add {
+  align-self: flex-end;
+  background-color: blue;
+  color: #fff;
   border-radius: 20px;
+  padding: 40px;
+  justify-content: center;
 }
