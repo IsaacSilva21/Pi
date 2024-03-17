@@ -1,14 +1,19 @@
 create database banco_de_usuarios;
 use banco_de_usuarios;
 
-create table usuario (
-id integer auto_increment primary key,
-nome varchar(50) not null,
-email varchar(50) not null unique,
-senha text not null,
-telefone varchar(14) not null
+CREATE TABLE usuario (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL UNIQUE,
+    senha TEXT NOT NULL,
+    cpf VARCHAR(11) NOT NULL UNIQUE,
+    nivel INTEGER NOT NULL CHECK (nivel >= 0 AND nivel <= 3),
+    status BOOLEAN NOT NULL
 );
 
-insert into usuario values (null, "Daniel", "danieldev", "daniel@email.com", "senhaDaniel","11123213");
+
+INSERT INTO usuario VALUES (null, 'adm', 'dddono@eEmail.com', 'password', '25354326746', 1, true);
+
 
 select * from usuario; 
+
