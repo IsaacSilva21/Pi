@@ -21,11 +21,10 @@ public class Usuario {
     private String email;
     @Column(name = "senha", columnDefinition  = "TEXT", nullable = true)
     private String senha;
-    @Column(name = "telefone", length = 15, nullable = true)
-    private String telefone;
-    //private String cpf;
-    //@Column(name = "nivel", length = 15, nullable = true)
-    //private String nivel;
+    @Column(name = "cpf", length = 14, nullable = true)
+    private String cpf;
+    @Column(name = "nivel", length = 15, nullable = true)
+    private String nivel;
 
    
     public int getId() {
@@ -52,22 +51,15 @@ public class Usuario {
     public void setSenha(String senha) {
       this.senha = senha;
     }
-    public String getTelefone() {
-      return telefone;
+    public void setCpf(String cpf) {
+       this.cpf = cpf;
+     }
+    public String getNivel() {
+      return nivel;
     }
-    public void setTelefone(String telefone) {
-      this.telefone = telefone;
+    public void setNivel(String nivel) {
+      this.nivel = nivel;
     }
-    
-    // public void setCpf(String cpf) {
-    //   this.cpf = cpf;
-    // }
-    // public String getNivel() {
-    //   return nivel;
-    // }
-    // public void setNivel(String nivel) {
-    //   this.nivel = nivel;
-    // }
     
   
   
