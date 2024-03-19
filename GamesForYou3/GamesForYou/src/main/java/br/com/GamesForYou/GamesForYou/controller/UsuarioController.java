@@ -2,8 +2,8 @@ package br.com.GamesForYou.GamesForYou.controller;
 
 import java.util.List;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import br.com.GamesForYou.GamesForYou.DAO.IUsuario;
 import br.com.GamesForYou.GamesForYou.model.Usuario;
+
 import br.com.GamesForYou.GamesForYou.service.UsuarioService;
 
 
@@ -23,8 +22,7 @@ import br.com.GamesForYou.GamesForYou.service.UsuarioService;
 @RequestMapping("/usuarios")
 public class UsuarioController {
 
- @Autowired
- private IUsuario dao;
+ 
 
  private UsuarioService usuarioService;
 
@@ -43,8 +41,14 @@ public class UsuarioController {
   }
   @PutMapping
   public ResponseEntity<Usuario> editarUsuario(@RequestBody Usuario usuario) {
-      Usuario usuarioNovo = dao.save(usuario);
-      return ResponseEntity.status(201).body(usuarioNovo);
+      return ResponseEntity.status(200).body(usuarioService.editarUsuario(usuario));
   }
-  
+   @PostMapping("/login")
+   public ResponseEntity<Usuario> validarSenha(@RequestBody Usuario usuario){
+         Boolean valid = usuarioService.validarSenha(usuario);
+         if(!valid){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+         }
+         return ResponseEntity.status(200).build();
+   }
 }
