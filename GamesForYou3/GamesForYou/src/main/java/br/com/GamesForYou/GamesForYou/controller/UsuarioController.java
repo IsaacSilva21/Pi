@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.GamesForYou.GamesForYou.model.Usuario;
 
 import br.com.GamesForYou.GamesForYou.service.UsuarioService;
+import jakarta.validation.Valid;
 
 
 @RestController
@@ -36,15 +37,15 @@ public class UsuarioController {
   }
 
   @PostMapping
-  public ResponseEntity<Usuario> criarUsuario(@RequestBody Usuario usuario){
+  public ResponseEntity<Usuario> criarUsuario(@Valid @RequestBody Usuario usuario){
      return ResponseEntity.status(201).body(usuarioService.criaUsuario(usuario));
   }
   @PutMapping
-  public ResponseEntity<Usuario> editarUsuario(@RequestBody Usuario usuario) {
+  public ResponseEntity<Usuario> editarUsuario(@Valid @RequestBody Usuario usuario) {
       return ResponseEntity.status(200).body(usuarioService.editarUsuario(usuario));
   }
    @PostMapping("/login")
-   public ResponseEntity<Usuario> validarSenha(@RequestBody Usuario usuario){
+   public ResponseEntity<Usuario> validarSenha(@Valid @RequestBody Usuario usuario){
          Boolean valid = usuarioService.validarSenha(usuario);
          if(!valid){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();

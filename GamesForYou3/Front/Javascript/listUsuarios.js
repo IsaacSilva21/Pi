@@ -14,16 +14,16 @@ function listarUsuarios() {
     })
     .then(function (usuarios) {
       const listaUsuarios = document.getElementById("listaUsuarios");
-      listaUsuarios.innerHTML = ""; // Limpar a lista antes de adicionar os novos usuários
+      listaUsuarios.innerHTML = ""; 
       usuarios.forEach(function (usuario) {
-        // Criar elemento de lista para o usuário
+       
         const itemUsuario = document.createElement("p");
 
-        // Adicionar nome, email e status ao item da lista
+       
         const textoStatus = usuario.status ? "Ativo" : "Desativado";
         itemUsuario.textContent = `${usuario.nome} ${usuario.email} ${textoStatus}`;
 
-        // Criar e adicionar os botões ao item da lista
+        
         const btnAlterar = document.createElement("button");
         btnAlterar.textContent = "Alterar";
         btnAlterar.onclick = function () {
@@ -33,12 +33,12 @@ function listarUsuarios() {
 
         const btnAtivar = document.createElement("button");
         btnAtivar.textContent = "Ativar";
-        btnAtivar.disabled = usuario.status; // Desativar se o usuário já estiver ativo
+        btnAtivar.disabled = usuario.status; 
         btnAtivar.onclick = function () {
           console.log(`Ativar usuário ${usuario.nome}`);
           btnAtivar.disabled = true;
           btnDesativar.disabled = false;
-          // Aqui você pode adicionar a lógica para ativar o usuário via requisição fetch
+          
         };
         itemUsuario.appendChild(btnAtivar);
 
@@ -49,11 +49,11 @@ function listarUsuarios() {
           console.log(`Desativar usuário ${usuario.nome}`);
           btnAtivar.disabled = false;
           btnDesativar.disabled = true;
-          // Aqui você pode adicionar a lógica para desativar o usuário via requisição fetch
+         
         };
         itemUsuario.appendChild(btnDesativar);
 
-        // Adicionar o item da lista à lista de usuários
+        
         listaUsuarios.appendChild(itemUsuario);
       });
     })
