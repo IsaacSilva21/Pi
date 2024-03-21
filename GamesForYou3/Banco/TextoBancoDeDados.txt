@@ -17,3 +17,10 @@ INSERT INTO usuario VALUES (null, 'adm', 'dddono@eEmail.com', 'password', '25354
 
 select * from usuario; 
 
+CREATE TABLE produtos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome_produto VARCHAR(100) NOT NULL,
+    descricao VARCHAR(255) NOT NULL,
+    preco DECIMAL(10, 2) NOT NULL,
+    quantidade INT NOT NULL
+);
