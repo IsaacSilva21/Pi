@@ -1,6 +1,6 @@
 package br.com.GamesForYou.GamesForYou.model;
 
-import org.hibernate.validator.constraints.br.CPF;
+
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -37,7 +37,7 @@ public class Usuario {
     private String senha;
 
     //@Size
-    @CPF(message = "Digite um cpf válido")
+    //@CPF(message = "Digite um cpf válido")
     @NotBlank(message = "O cpf é obrigatório")
     @Column(name = "cpf", length = 11, nullable = true, unique = true)
     private String cpf;

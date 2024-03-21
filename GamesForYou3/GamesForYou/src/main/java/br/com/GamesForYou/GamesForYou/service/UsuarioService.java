@@ -34,9 +34,15 @@ public Usuario editarUsuario(Usuario usuario){
   Usuario usuarioNovo = repository.save(usuario);
   return usuarioNovo;
 }
-public Boolean validarSenha(Usuario usuario){
-  String senha = repository.getReferenceById(usuario.getId()).getSenha();
-  boolean valid = passwordEncoder.matches(usuario.getSenha(), senha);
-  return valid;
-}
+public Boolean validarSenha(Usuario usuario) {
+        // Recupere o usuário pelo email
+        Usuario usuarioExistente = repository.findByEmail(usuario.getEmail());
+
+        // Verifique se o usuário existe e se a senha fornecida corresponde à senha armazenada
+        if (usuarioExistente != null && passwordEncoder.matches(usuario.getSenha(), usuarioExistente.getSenha())) {
+            return true; // Senha válida
+        } else {
+            return false; // Senha inválida
+        }
+    }
 }

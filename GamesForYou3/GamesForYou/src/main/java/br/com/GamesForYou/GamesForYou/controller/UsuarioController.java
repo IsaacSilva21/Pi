@@ -50,12 +50,16 @@ public class UsuarioController {
       return ResponseEntity.status(200).body(usuarioService.editarUsuario(usuario));
   }
    @PostMapping("/login")
-   public ResponseEntity<Usuario> validarSenha(@Valid @RequestBody Usuario usuario){
-         Boolean valid = usuarioService.validarSenha(usuario);
-         if(!valid){
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-         }
-         return ResponseEntity.status(200).build();
+public ResponseEntity<Usuario> validarSenha(@RequestBody Usuario usuario) {
+    if (usuario == null || usuario.getEmail() == null || usuario.getSenha() == null) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+    Boolean valid = usuarioService.validarSenha(usuario);
+    if (!valid) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }
+    return ResponseEntity.status(HttpStatus.OK).build();
    }
    @ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(MethodArgumentNotValidException.class)
