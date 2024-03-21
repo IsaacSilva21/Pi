@@ -38,14 +38,14 @@ public class Produtos {
      private String descricao;
 
      @NotNull(message = "O preço é obrigatório")
-    @DecimalMin(value = "0.00", message = "O preço não pode ser negativo") // Adicione validação de valor mínimo
-    @DecimalMax(value = "999999.99", message = "O preço não pode ser maior que 999999.99") // Adicione validação de valor máximo, ajuste conforme necessário
+    @DecimalMin(value = "0.00", message = "O preço não pode ser negativo") 
+    @DecimalMax(value = "999999.99", message = "O preço não pode ser maior que 999999.99") 
     @Column(name = "preco", precision = 10, scale = 2, nullable = false)
      private BigDecimal preco;
    
      @NotNull(message = "A quantidade é obrigatória")
-    @Min(value = 0, message = "A quantidade não pode ser negativa") // Adicione validação de valor mínimo
-    @Max(value = 1000, message = "A quantidade não pode ser maior que 1000") // Adicione validação de valor máximo, ajuste conforme necessário
+    @Min(value = 0, message = "A quantidade não pode ser negativa") 
+    @Max(value = 1000, message = "A quantidade não pode ser maior que 1000") 
     @Column(name = "quantidade", nullable = false)
     private Integer quantidade;
 
