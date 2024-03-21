@@ -1,5 +1,9 @@
 package br.com.GamesForYou.GamesForYou.repository;
 
-public interface IProdutos {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import br.com.GamesForYou.GamesForYou.model.Produtos;
+
+public interface IProdutos extends JpaRepository<Produtos, Integer>{
 
 }

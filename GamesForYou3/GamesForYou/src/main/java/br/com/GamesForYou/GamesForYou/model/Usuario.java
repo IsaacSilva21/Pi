@@ -10,8 +10,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
@@ -38,6 +36,7 @@ public class Usuario {
     @Column(name = "senha", columnDefinition  = "TEXT", nullable = true)
     private String senha;
 
+    //@Size
     @CPF(message = "Digite um cpf válido")
     @NotBlank(message = "O cpf é obrigatório")
     @Column(name = "cpf", length = 11, nullable = true, unique = true)
