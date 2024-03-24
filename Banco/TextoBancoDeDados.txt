@@ -15,7 +15,8 @@ CREATE TABLE usuario (
 INSERT INTO usuario VALUES (null, 'adm', 'dddono@eEmail.com', 'password', '25354326746', 1, true);
 
 
-select * from usuario; 
+select * from usuario;
+select * from produtos;
 
 CREATE TABLE produtos (
     id INT AUTO_INCREMENT PRIMARY KEY,
