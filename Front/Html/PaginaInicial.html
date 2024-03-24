@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/Front/Css/PaginaInicial.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet">
+  <title>Inicio</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="box">
+      <h1>Inicio</h1>
+      <form id="formLogin">
+        <button type="button" onclick="listarProdutos()">Listar Produtos</button>
+        <button type="button" onclick="listarUsuarios()">Listar Usuarios</button>
+      </form>
+    </div>
+  </div>
+  <script>
+    function listarProdutos() {
+      window.location.href = "/Front/Html/listProdutos.html";
+    }
+
+    function listarUsuarios() {
+      window.location.href = "/Front/Html/listUsuarios.html";
+    }
+  </script>
+</body>
+
+</html>
