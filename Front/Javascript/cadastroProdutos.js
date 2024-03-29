@@ -43,21 +43,65 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-function previewImage() {
+function previewButton() {
   var fileInput = document.getElementById("imagemInput");
-  var preview = document.getElementById("preview");
+  var imagensContainer = document.getElementById("preview");
+  var files = fileInput.files;
 
-  var file = fileInput.files[0];
-  var reader = new FileReader();
+  for (var i = 0; i < files.length; i++) {
+    (function (index) {
+      if (index < 3) {
+        var file = files[index];
+        var reader = new FileReader();
 
-  reader.onload = function (e) {
-    var img = document.createElement("img");
-    img.style.maxWidth = "100%";
-    img.style.maxHeight = "100%";
-    img.src = e.target.result;
-    preview.innerHTML = "";
-    preview.appendChild(img);
-  };
+        reader.onload = function (e) {
+          var divImage = document.createElement("div");
+          var divCheck = document.createElement("div");
+          var divLabel = document.createElement("div");
+          var divTodos = document.createElement("div");
+          divTodos.className = "div-todos";
+          divCheck.className = "div-check";
+          divLabel.className = "div-label";
+          var img = document.createElement("img");
+          img.style.maxWidth = "200px";
+          img.style.maxHeight = "200px";
+          img.src = e.target.result;
 
-  reader.readAsDataURL(file);
+          var checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.className = "imagem-checkbox";
+          checkbox.id = "checkbox_" + index; // Adicionando um id único para cada checkbox
+          checkbox.addEventListener("click", function () {
+            var checkboxes = document.querySelectorAll(".imagem-checkbox");
+            checkboxes.forEach(function (cb) {
+              if (cb !== this) cb.checked = false;
+            }, this);
+          });
+
+          var label = document.createElement("label");
+          label.textContent = "Principal"; // Texto da label
+          label.setAttribute("for", "checkbox_" + index); // Associando a label ao checkbox
+
+          var removerBtn = document.createElement("button");
+          removerBtn.textContent = "Remover";
+          removerBtn.className = "remover-btn";
+          removerBtn.addEventListener("click", function () {
+            imagensContainer.removeChild(divTodos);
+          });
+          divImage.appendChild(img);
+          divLabel.appendChild(checkbox);
+          divLabel.appendChild(label); // Adicionando a label ao divCheck
+          divCheck.appendChild(divLabel);
+          divCheck.appendChild(removerBtn);
+          divTodos.appendChild(divImage);
+          divTodos.appendChild(divCheck);
+          imagensContainer.appendChild(divTodos);
+        };
+
+        reader.readAsDataURL(file);
+      } else {
+        console.warn("Apenas três imagens podem ser adicionadas.");
+      }
+    })(i);
+  }
 }

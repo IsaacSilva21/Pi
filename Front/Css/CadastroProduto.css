@@ -73,3 +73,39 @@ button {
 .descricao {
   height: 150px;
 }
+
+.imagens {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.div-todos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.div-check {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  margin-left: 10px;
+}
+
+.div-check input {
+  width: 30px;
+  height: 30px;
+}
+
+.div-label label {
+  margin-left: 10px;
+  font-weight: bold;
+  margin-top: 6px;
+}
+
+.div-label {
+  display: flex;
+}
+
+.div-check button {
+  width: 120px;
+  border-radius: 0%;
+}

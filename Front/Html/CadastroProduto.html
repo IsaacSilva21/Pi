@@ -21,8 +21,10 @@
         <input type="text" class="quantidade" name="quantidade" placeholder="Quantidade" required>
         <input type="text" class="avaliacao" name="avaliacao" placeholder="Avaliação" required>
         <input type="text" class="descricao" name="descricao" placeholder="Descrição Detalhada" required>
-        <input type="file" name="imagem" id="imagemInput" onchange="previewImage()">
-        <div id="preview" style="max-width: 300px; max-height: 300px;"></div>
+        <input type="file" name="imagem" id="imagemInput" onchange="previewButton()">
+        <div class="imagens">
+          <div id="preview" style="max-width: 300px; max-height: 300px;"></div>
+        </div>
         <button type="submit">Cadastrar</button>
       </form>
     </div>
