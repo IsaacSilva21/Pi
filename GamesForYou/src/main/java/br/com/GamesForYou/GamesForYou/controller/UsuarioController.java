@@ -11,6 +11,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -45,10 +46,15 @@ public class UsuarioController {
   public ResponseEntity<Usuario> criarUsuario(@Valid @RequestBody Usuario usuario){
      return ResponseEntity.status(201).body(usuarioService.criaUsuario(usuario));
   }
-  @PutMapping
-  public ResponseEntity<Usuario> editarUsuario(@Valid @RequestBody Usuario usuario) {
-      return ResponseEntity.status(200).body(usuarioService.editarUsuario(usuario));
-  }
+  @PutMapping("/{id}")
+  public ResponseEntity<Usuario> editarUsuario(@PathVariable("id") Integer id, @Valid @RequestBody Usuario usuario) {
+      Usuario usuarioAtualizado = usuarioService.editarUsuario(id, usuario);
+      if (usuarioAtualizado != null) {
+          return ResponseEntity.ok(usuarioAtualizado);
+      } else {
+          return ResponseEntity.notFound().build();
+      }
+  }  
    @PostMapping("/login")
 public ResponseEntity<Usuario> validarSenha(@RequestBody Usuario usuario) {
     if (usuario == null || usuario.getEmail() == null || usuario.getSenha() == null) {
