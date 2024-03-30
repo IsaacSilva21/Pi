@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/Front/Css/telaProduto.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet">
+  <title>Tela de Produtos</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="box">
+      <h1>Tela de produtos</h1>
+      <div class="separacao">
+        <div>
+          <div class="fotos"></div>
+          <button class="butImg">+</button>
+          <button class="butImg">></button>
+        </div>
+        <div class="inputs">
+          <form id="formAltProdutos">
+            <input type="text" class="nome" name="nome" placeholder="Nome do produto" required>
+            <input type="text" class="valor" name="valor" placeholder="Valor" maxlength="11" pattern="\d*" required>
+            <input type="text" class="quantidade" name="quantidade" placeholder="Quantidade" required>
+            <input type="text" class="avaliacao" name="avaliacao" placeholder="Avaliação" required>
+            <input type="text" class="descricao" name="descricao" placeholder="Descrição Detalhada" required>
+            <div>
+              <button>Cancelar</button>
+              <button>Atualizar</button>
+            </div>
+          </form>
+
+
+        </div>
+      </div>
+    </div>
+</body>
+
+</html>

@@ -18,25 +18,39 @@ function listarProdutos() {
       produtos.forEach(function (produto) {
         const divProduto = document.createElement("div");
         divProduto.classList.add("produto");
+        divProduto.className = "div-produto";
 
-        const nomeProduto = document.createElement("p");
-        nomeProduto.textContent = `Nome: ${produto.nome}`;
+        const divButtons = document.createElement("div");
+        divButtons.className = "div-buttons";
+        const divAlterar = document.createElement("div");
+        divAlterar.className = "div-alterar";
+
+        const id = document.createElement("span");
+        id.textContent = `${produto.id}`;
+        divProduto.appendChild(id);
+
+        const nomeProduto = document.createElement("span");
+        nomeProduto.textContent = `${produto.nome}`;
         divProduto.appendChild(nomeProduto);
+        nomeProduto.style.cursor = "pointer";
+        nomeProduto.addEventListener("click", function () {
+          window.location.href = "telaProduto.html";
+        });
 
-        const descricaoProduto = document.createElement("p");
-        descricaoProduto.textContent = `Descrição: ${produto.descricao}`;
+        const descricaoProduto = document.createElement("span");
+        descricaoProduto.textContent = `${produto.descricao}`;
         divProduto.appendChild(descricaoProduto);
 
-        const precoProduto = document.createElement("p");
-        precoProduto.textContent = `Preço: ${produto.preco}`;
+        const precoProduto = document.createElement("span");
+        precoProduto.textContent = `${produto.preco}`;
         divProduto.appendChild(precoProduto);
 
-        const quantidadeProduto = document.createElement("p");
-        quantidadeProduto.textContent = `Quantidade: ${produto.quantidade}`;
+        const quantidadeProduto = document.createElement("span");
+        quantidadeProduto.textContent = `${produto.quantidade}`;
         divProduto.appendChild(quantidadeProduto);
 
-        const statusProduto = document.createElement("p");
-        statusProduto.textContent = `Status: ${
+        const statusProduto = document.createElement("span");
+        statusProduto.textContent = `${
           produto.status ? "Ativo" : "Desativado"
         }`;
         divProduto.appendChild(statusProduto);
@@ -46,7 +60,8 @@ function listarProdutos() {
         btnAlterar.onclick = function () {
           console.log(`Alterar produto ${produto.nome}`);
         };
-        divProduto.appendChild(btnAlterar);
+        divAlterar.appendChild(btnAlterar);
+        divProduto.appendChild(divAlterar);
 
         const btnAtivar = document.createElement("button");
         btnAtivar.textContent = "Ativar";
@@ -56,7 +71,7 @@ function listarProdutos() {
           btnAtivar.disabled = true;
           btnDesativar.disabled = false;
         };
-        divProduto.appendChild(btnAtivar);
+        divButtons.appendChild(btnAtivar);
 
         const btnDesativar = document.createElement("button");
         btnDesativar.textContent = "Desativar";
@@ -66,7 +81,8 @@ function listarProdutos() {
           btnAtivar.disabled = false;
           btnDesativar.disabled = true;
         };
-        divProduto.appendChild(btnDesativar);
+        divButtons.appendChild(btnDesativar);
+        divProduto.appendChild(divButtons);
 
         listaProdutos.appendChild(divProduto);
       });

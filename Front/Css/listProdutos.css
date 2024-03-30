@@ -68,11 +68,6 @@ button {
   padding-bottom: 5px;
 }
 
-p {
-  border: 1px solid blue;
-  padding-left: 10px;
-}
-
 p,
 button {
   display: flex;
@@ -98,40 +93,49 @@ button {
 .div-buttons {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  align-self: center;
 }
 
 .div-buttons button {
   justify-content: center;
 }
 
-.div-usuario {
+.div-produto {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   border: 1px solid blue;
   padding-left: 10px;
   text-align: center;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.div-usuario span {
-  padding-top: 7px;
+.div-produto span {
+  align-self: center;
 }
 
+.div-alterar {
+  align-self: center;
+}
+
+.id {
+  margin-left: 10px;
+}
 .nome {
-  margin-left: 65px;
+  margin-left: 20px;
 }
-.email {
-  margin-left: 105px;
+
+.desc {
+  margin-left: 35px;
 }
+
+.preco {
+  margin-left: 45px;
+}
+
+.quant {
+  margin-left: 35px;
+}
+
 .status {
-  margin-left: 105px;
-}
-.nivel {
-  margin-left: 105px;
-}
-.alterar {
-  margin-left: 75px;
-}
-.hab {
-  margin-left: 80px;
+  margin-left: 30px;
 }

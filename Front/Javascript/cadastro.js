@@ -2,11 +2,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const formulario = document.getElementById("formCadastro");
 
   if (formulario) {
-   
     formulario.addEventListener("submit", function (event) {
       event.preventDefault();
 
-      
       const Inome = document.querySelector(".nome");
       const Iemail = document.querySelector(".email");
       const Isenha = document.querySelector(".senha");
@@ -15,7 +13,6 @@ document.addEventListener("DOMContentLoaded", function () {
       const Inivel = document.querySelector(".nivel");
       const Istatus = document.querySelector(".status");
 
-      
       if (Isenha.value !== IconfirmarSenha.value) {
         alert("As senhas não coincidem!");
         return;
@@ -30,7 +27,6 @@ document.addEventListener("DOMContentLoaded", function () {
         status: true,
       };
 
-      
       fetch("http://localhost:8080/usuarios", {
         headers: {
           Accept: "application/json",
@@ -41,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
       })
         .then(function (res) {
           console.log(res);
-          
+          window.location.href = "listUsuarios.html";
           limpar();
         })
         .catch(function (error) {
@@ -49,7 +45,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
- 
     function limpar() {
       formulario.reset();
     }

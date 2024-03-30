@@ -16,27 +16,49 @@ function listarUsuarios() {
       const listaUsuarios = document.getElementById("listaUsuarios");
       listaUsuarios.innerHTML = "";
       usuarios.forEach(function (usuario) {
-        const itemUsuario = document.createElement("p");
+        const divUsuario = document.createElement("div");
+        divUsuario.className = "div-usuario";
 
         const textoStatus = usuario.status ? "Ativo" : "Desativado";
-        itemUsuario.textContent = `${usuario.nome} ${usuario.email} ${textoStatus}`;
+        const textoNivel = usuario.nivel === 1 ? "Administrador" : "Estoquista";
+
+        const pNome = document.createElement("span");
+        pNome.textContent = `${usuario.nome}`;
+        const pEmail = document.createElement("span");
+        pEmail.textContent = `${usuario.email}`;
+        const pStatus = document.createElement("span");
+        pStatus.textContent = `${textoStatus}`;
+        const pNivel = document.createElement("span");
+        pNivel.textContent = `${textoNivel}`;
+
+        divUsuario.appendChild(pNome);
+        divUsuario.appendChild(pEmail);
+        divUsuario.appendChild(pStatus);
+        divUsuario.appendChild(pNivel);
+
+        const divButtons = document.createElement("div");
+        divButtons.className = "div-buttons";
+
+        const divAlterar = document.createElement("div");
+        divAlterar.className = "div-buttons";
 
         const btnAlterar = document.createElement("button");
         btnAlterar.textContent = "Alterar";
         btnAlterar.onclick = function () {
-          console.log(`Alterar usuário ${usuario.nome}`);
+          window.location.href = "altUsuario.html";
         };
-        itemUsuario.appendChild(btnAlterar);
+        divAlterar.appendChild(btnAlterar);
 
         const btnAtivar = document.createElement("button");
         btnAtivar.textContent = "Ativar";
         btnAtivar.disabled = usuario.status;
         btnAtivar.onclick = function () {
           console.log(`Ativar usuário ${usuario.nome}`);
+
           btnAtivar.disabled = true;
           btnDesativar.disabled = false;
         };
-        itemUsuario.appendChild(btnAtivar);
+        divButtons.appendChild(btnAtivar);
 
         const btnDesativar = document.createElement("button");
         btnDesativar.textContent = "Desativar";
@@ -46,9 +68,10 @@ function listarUsuarios() {
           btnAtivar.disabled = false;
           btnDesativar.disabled = true;
         };
-        itemUsuario.appendChild(btnDesativar);
-
-        listaUsuarios.appendChild(itemUsuario);
+        divButtons.appendChild(btnDesativar);
+        divUsuario.appendChild(divAlterar);
+        divUsuario.appendChild(divButtons);
+        listaUsuarios.appendChild(divUsuario);
       });
     })
     .catch(function (error) {
