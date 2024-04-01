@@ -45,7 +45,7 @@ function listarUsuarios() {
         const btnAlterar = document.createElement("button");
         btnAlterar.textContent = "Alterar";
         btnAlterar.onclick = function () {
-          window.location.href = "altUsuario.html";
+          window.location.href = `altUsuario.html?id=${usuario.id}`;
         };
         divAlterar.appendChild(btnAlterar);
 

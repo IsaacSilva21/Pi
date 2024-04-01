@@ -39,5 +39,9 @@ public Produtos editarProduto(Produtos produtos){
         Produtos produto = repository.findById(id).orElseThrow(() -> new IllegalArgumentException("Produto não encontrado"));
         return produto.getImagem();
     }
+
+    public Produtos obterProdutoPorId(Integer id) {
+      return repository.findById(id).orElse(null);
+  }
 }
 

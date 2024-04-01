@@ -79,3 +79,10 @@ button {
 .descricao {
   height: 150px;
 }
+
+.div-fotos {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+}

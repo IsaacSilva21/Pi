@@ -85,5 +85,16 @@ public class ProdutosController {
             return ResponseEntity.notFound().build();
         }
     }
+    
+
+    @GetMapping("/{id}")
+public ResponseEntity<Produtos> obterProdutoPorId(@PathVariable Integer id) {
+    Produtos produto = produtoService.obterProdutoPorId(id);
+    if (produto != null) {
+        return ResponseEntity.ok(produto);
+    } else {
+        return ResponseEntity.notFound().build();
+    }
+}
 
 }
