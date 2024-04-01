@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
@@ -19,7 +20,6 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data 
-
 @Entity
 @Table(name = "produtos") 
 public class Produtos {
@@ -30,24 +30,36 @@ public class Produtos {
         private Integer id;
 
      @NotBlank(message = "O nome é obrigatório")
-     @Column(name = "nome_produto", length = 50, nullable = true)
+     @Column(name = "nome_produto", length = 200, nullable = true)
      private String nome;
-
-     @NotBlank(message = "A descrição é obrigatório")
-     @Column(name = "descricao", length = 255, nullable = false)
-     private String descricao;
 
      @NotNull(message = "O preço é obrigatório")
     @DecimalMin(value = "0.00", message = "O preço não pode ser negativo") // Adicione validação de valor mínimo
     @DecimalMax(value = "999999.99", message = "O preço não pode ser maior que 999999.99") // Adicione validação de valor máximo, ajuste conforme necessário
-    @Column(name = "preco", precision = 10, scale = 2, nullable = false)
-     private BigDecimal preco;
+    @Column(name = "valor", precision = 10, scale = 2, nullable = false)
+     private BigDecimal valor;
    
      @NotNull(message = "A quantidade é obrigatória")
     @Min(value = 0, message = "A quantidade não pode ser negativa") // Adicione validação de valor mínimo
     @Max(value = 1000, message = "A quantidade não pode ser maior que 1000") // Adicione validação de valor máximo, ajuste conforme necessário
     @Column(name = "quantidade", nullable = false)
     private Integer quantidade;
+
+    @NotNull(message = "A avaliação é obrigatória")
+    @Min(value = 0, message = "A avaliação não pode ser negativa") // Adicione validação de valor mínimo
+    @Max(value = 5, message = "A quantidade não pode ser maior que 5") // Adicione validação de valor máximo, ajuste conforme necessário
+    @Column(name = "avaliacao", nullable = false)
+    private Integer avaliacao;
+
+    @NotBlank(message = "A descrição é obrigatório")
+     @Column(name = "descricao", length = 2000, nullable = false)
+     private String descricao;
+
+    @Lob
+    @Column(name = "imagem", nullable = false)
+    private byte[] imagem;
+
+   
 
     //@Data faz os construtores e getter e setters
     // public Integer getId() {

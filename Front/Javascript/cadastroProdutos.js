@@ -6,28 +6,26 @@ document.addEventListener("DOMContentLoaded", function () {
       event.preventDefault();
 
       const Inome = document.querySelector(".nome");
-      const Idescricao = document.querySelector(".descricao");
-      const Ipreco = document.querySelector(".preco");
+      const Ivalor = document.querySelector(".valor");
       const Iquantidade = document.querySelector(".quantidade");
+      const Iavaliacao = document.querySelector(".avaliacao");
+      const Idescricao = document.querySelector(".descricao");
+      const Ifoto = document.getElementById("imagemInput").files[0]; // Acessar o arquivo de imagem selecionado
 
-      const userData = {
-        nome: Inome.value,
-        descricao: Idescricao.value,
-        preco: Ipreco.value,
-        quantidade: Iquantidade.value,
-      };
+      const userData = new FormData(); // Usar FormData para enviar dados do formulário, incluindo a imagem
+      userData.append("nome", Inome.value);
+      userData.append("valor", Ivalor.value);
+      userData.append("quantidade", Iquantidade.value);
+      userData.append("avaliacao", Iavaliacao.value);
+      userData.append("descricao", Idescricao.value);
+      userData.append("imagem", Ifoto); // Adicionar a imagem ao FormData
 
       fetch("http://localhost:8080/produtos", {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
         method: "POST",
-        body: JSON.stringify(userData),
+        body: userData, // Enviar FormData em vez de JSON
       })
         .then(function (res) {
           console.log(res);
-
           limpar();
         })
         .catch(function (error) {
