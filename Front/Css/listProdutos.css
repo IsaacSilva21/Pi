@@ -102,7 +102,7 @@ button {
 
 .div-produto {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   border: 1px solid blue;
   padding-left: 10px;
   text-align: center;
@@ -121,21 +121,17 @@ button {
   margin-left: 10px;
 }
 .nome {
-  margin-left: 20px;
-}
-
-.desc {
-  margin-left: 35px;
+  margin-left: 42px;
 }
 
 .preco {
-  margin-left: 45px;
+  margin-left: 75px;
 }
 
 .quant {
-  margin-left: 35px;
+  margin-left: 55px;
 }
 
 .status {
-  margin-left: 30px;
+  margin-left: 50px;
 }

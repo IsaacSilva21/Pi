@@ -37,10 +37,6 @@ function listarProdutos() {
           window.location.href = `telaProduto.html?id=${produto.id}`;
         });
 
-        const descricaoProduto = document.createElement("span");
-        descricaoProduto.textContent = `${produto.descricao}`;
-        divProduto.appendChild(descricaoProduto);
-
         const precoProduto = document.createElement("span");
         precoProduto.textContent = `${produto.valor}`;
         divProduto.appendChild(precoProduto);
