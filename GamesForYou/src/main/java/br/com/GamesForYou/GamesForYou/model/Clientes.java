@@ -13,7 +13,7 @@ import lombok.Data;
 @Data
 
 @Entity
-@Table(name = "cliente")
+@Table(name = "clientes")
 public class Clientes {
 
   @Id
@@ -39,8 +39,8 @@ public class Clientes {
    private String cpf;
 
    @NotBlank(message = "Data de nascimento é obrgatório!")
-   @Column(name = "dataNas", length = 8, nullable = true)
-   private int dataNas;
+   @Column(name = "data", nullable = true)
+   private String data;
 
    @NotBlank(message = "Gênero é obrgatório!")
    @Column(name = "genero", nullable = true)
