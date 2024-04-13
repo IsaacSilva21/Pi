@@ -34,20 +34,20 @@ public class Produtos {
      private String nome;
 
      @NotNull(message = "O preço é obrigatório")
-    @DecimalMin(value = "0.00", message = "O preço não pode ser negativo") // Adicione validação de valor mínimo
-    @DecimalMax(value = "999999.99", message = "O preço não pode ser maior que 999999.99") // Adicione validação de valor máximo, ajuste conforme necessário
+    @DecimalMin(value = "0.00", message = "O preço não pode ser negativo") 
+    @DecimalMax(value = "999999.99", message = "O preço não pode ser maior que 999999.99") 
     @Column(name = "valor", precision = 10, scale = 2, nullable = false)
      private BigDecimal valor;
    
      @NotNull(message = "A quantidade é obrigatória")
-    @Min(value = 0, message = "A quantidade não pode ser negativa") // Adicione validação de valor mínimo
-    @Max(value = 1000, message = "A quantidade não pode ser maior que 1000") // Adicione validação de valor máximo, ajuste conforme necessário
+    @Min(value = 0, message = "A quantidade não pode ser negativa") 
+    @Max(value = 1000, message = "A quantidade não pode ser maior que 1000") 
     @Column(name = "quantidade", nullable = false)
     private Integer quantidade;
 
     @NotNull(message = "A avaliação é obrigatória")
-    @Min(value = 0, message = "A avaliação não pode ser negativa") // Adicione validação de valor mínimo
-    @Max(value = 5, message = "A quantidade não pode ser maior que 5") // Adicione validação de valor máximo, ajuste conforme necessário
+    @Min(value = 0, message = "A avaliação não pode ser negativa")
+    @Max(value = 5, message = "A quantidade não pode ser maior que 5") 
     @Column(name = "avaliacao", nullable = false)
     private Integer avaliacao;
 
@@ -57,22 +57,5 @@ public class Produtos {
 
     @Lob
     @Column(name = "imagem", nullable = false)
-    private byte[] imagem;
-
-   
-
-    //@Data faz os construtores e getter e setters
-    // public Integer getId() {
-    //   return id;
-    // }
-    // public void setId(Integer id) {
-    //   this.id = id;
-    // }
-    // public String getNome() {
-    //   return nome;
-    // }
-    // public void setNome(String nome) {
-    //   this.nome = nome;
-    // }
-   
+    private byte[] imagem;  
 }
