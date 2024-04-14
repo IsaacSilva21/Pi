@@ -65,6 +65,11 @@ public ResponseEntity<Usuario> validarSenha(@RequestBody Usuario usuario) {
     if (!valid) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
+     Integer userId = usuarioService.buscarIdPorEmail(usuario.getEmail());
+    Boolean status = usuarioService.verificarStatusUsuario(userId);
+    if (!status) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }
     return ResponseEntity.status(HttpStatus.OK).build();
    }
    @ResponseStatus(HttpStatus.BAD_REQUEST)
