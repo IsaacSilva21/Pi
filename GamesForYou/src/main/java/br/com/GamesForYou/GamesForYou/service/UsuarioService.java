@@ -29,36 +29,13 @@ public Usuario criaUsuario(Usuario usuario){
   Usuario usuarioNovo = repository.save(usuario);
   return usuarioNovo;
 }
-public Usuario editarUsuario(Integer id, Usuario usuarioAtualizado){
- 
-  Optional<Usuario> optionalUsuario = repository.findById(id);
-    
-  
-  if (optionalUsuario.isPresent()) {
-      Usuario usuarioExistente = optionalUsuario.get();
-      
-      
-      usuarioExistente.setNome(usuarioAtualizado.getNome());
-      usuarioExistente.setCpf(usuarioAtualizado.getCpf());
-      usuarioExistente.setNivel(usuarioAtualizado.getNivel());
-         
-      Boolean status = usuarioAtualizado.getStatus();
-      if (status != null) {
-          usuarioExistente.setStatus(status);
-      }
-      
-      String novaSenha = usuarioAtualizado.getSenha();
-      if (novaSenha != null) {
-          String encoder = this.passwordEncoder.encode(novaSenha);
-          usuarioExistente.setSenha(encoder);
-      }
-      
-      Usuario usuarioSalvo = repository.save(usuarioExistente);
-      return usuarioSalvo;
-  } else {   
-      return null;
-  }
+public Usuario editarUsuario(Usuario usuario){
+  String encoder = this.passwordEncoder.encode(usuario.getSenha());
+  usuario.setSenha(encoder);
+  Usuario usuarioNovo = repository.save(usuario);
+  return usuarioNovo;
 }
+
 public Boolean validarSenha(Usuario usuario) {
         
         Usuario usuarioExistente = repository.findByEmail(usuario.getEmail());
@@ -88,5 +65,9 @@ public Boolean validarSenha(Usuario usuario) {
         } else {
             throw new IllegalArgumentException("Usuário não encontrado para o ID fornecido");
         }
+    }
+
+    public Usuario buscarUsuarioPorId(Integer id) {
+        return repository.findById(id).orElse(null);
     }
 }

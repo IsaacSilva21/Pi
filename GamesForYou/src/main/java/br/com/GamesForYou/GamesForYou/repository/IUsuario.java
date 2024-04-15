@@ -1,5 +1,6 @@
 package br.com.GamesForYou.GamesForYou.repository;
 
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

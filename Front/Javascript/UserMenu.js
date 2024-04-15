@@ -19,6 +19,10 @@ function listarProdutos() {
         const divProduto = document.createElement("div");
         divProduto.classList.add("produto");
         divProduto.className = "div-produto";
+        divProduto.style.cursor = "pointer";
+        divProduto.addEventListener("click", function () {
+          window.location.href = `UserProduto.html?id=${produto.id}`;
+        });
 
         const nomeProduto = document.createElement("span");
         nomeProduto.textContent = `${produto.nome}`;

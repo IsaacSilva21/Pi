@@ -151,8 +151,8 @@ nav ul li:hover {
 }
 
 .div-produto {
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
   background-color: #131313;
   margin-left: 20px;
   margin-bottom: 20px;
@@ -178,7 +178,7 @@ nav ul li:hover {
 .div-produto span:nth-child(2) {
   color: #fff;
   justify-self: center;
-  font-size: 25px;
+  font-size: 18px;
   font-weight: bold;
   margin-top: 10px;
 }
@@ -187,7 +187,7 @@ nav ul li:hover {
   justify-self: start;
   color: #fbb710;
   font-weight: bold;
-  font-size: 30px;
+  font-size: 26px;
   margin-top: 25px;
   margin-left: 20px;
 }
