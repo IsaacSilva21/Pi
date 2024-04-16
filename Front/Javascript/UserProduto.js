@@ -2,15 +2,28 @@ document.addEventListener("DOMContentLoaded", function () {
   const urlParams = new URLSearchParams(window.location.search);
   const id = urlParams.get("id");
 
+  // Função para converter o valor da avaliação para estrelas
+  function convertToStars(avaliacao) {
+    let stars = "";
+    for (let i = 0; i < avaliacao; i++) {
+      stars += "⭐"; // Adiciona uma estrela por cada ponto de avaliação
+    }
+    return stars;
+  }
+
   // Fazer uma solicitação AJAX para obter as informações do produto com o ID fornecido
   fetch(`http://localhost:8080/produtos/${id}`)
     .then((response) => response.json())
     .then((produto) => {
-      // Preencher os elementos input com as informações do produto
-      document.querySelector(".nome").value = produto.nome;
-      document.querySelector(".valor").value = produto.valor;
-      document.querySelector(".avaliacao").value = produto.avaliacao;
-      document.querySelector(".descricao").value = produto.descricao;
+      // Preencher os elementos HTML com as informações do produto
+      document.querySelector(".nome").innerText = produto.nome;
+      document.querySelector(".valor").innerText = `R$${produto.valor}`;
+      // Converte o valor da avaliação para estrelas
+      document.querySelector(".avaliacao").innerText = convertToStars(
+        produto.avaliacao
+      );
+      document.querySelector(".descricao").innerText = produto.descricao;
+      document.title = `${produto.nome} 🎮 GFY`;
     })
     .catch((error) => {
       console.error("Erro ao obter informações do produto:", error);
@@ -32,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       img.onload = function () {
         // Definir a largura e a altura da imagem como 300px
-        img.width = 400;
+        img.width = 500;
         img.height = 300;
         fotosDiv.appendChild(img);
       };
