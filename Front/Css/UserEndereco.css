@@ -95,8 +95,8 @@ nav ul li:hover {
   color: aliceblue;
   background-color: #131313;
   width: 500px;
-  height: 600px;
-  margin-top: 200px;
+  height: 700px;
+  margin-top: 100px;
   border-radius: 10px;
   border: 1px solid #fbb710;
 }
@@ -124,15 +124,5 @@ nav ul li:hover {
   padding: 10px;
   border-radius: 5px;
   width: 300px;
-  margin-top: 40px;
-}
-
-#data {
-  margin-top: 0;
-  color: gray;
-  margin-top: 5px;
-}
-
-.genero {
-  margin-bottom: 15px;
+  margin-top: 30px;
 }
