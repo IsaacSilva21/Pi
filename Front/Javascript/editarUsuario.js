@@ -1,8 +1,12 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const urlParams = new URLSearchParams(window.location.search);
-  const usuarioId = urlParams.get("id");
+const nome = document.querySelector(".nome")
+const cpf = document.querySelector(".cpf")
+const senha = document.querySelector(".senha")
+const nivel = document.querySelector(".nivel")
 
-  // Fazer uma solicitação AJAX para obter as informações do usuário com o ID fornecido
+document.addEventListener("DOMContentLoaded", function () {
+  const url = new URLSearchParams(document.location.search);
+  const usuarioId = url.get("id");
+
   fetch(`http://localhost:8080/usuarios/${usuarioId}`)
     .then((response) => {
       if (!response.ok) {
@@ -11,33 +15,29 @@ document.addEventListener("DOMContentLoaded", function () {
       return response.json();
     })
     .then((usuario) => {
-      document.querySelector(".nome").value = usuario.nome;
-      document.querySelector(".cpf").value = usuario.cpf;
-      document.querySelector(".senha").value = usuario.senha;
-      document.querySelector(".email").value = usuario.email;
-      document.querySelector(".status").value = usuario.status;
-      document.querySelector(".nivel").value = usuario.nivel;
+      nome.value = usuario.nome;
+      cpf.value = usuario.cpf;
+      senha.value = usuario.senha;
+      nivel.value = usuario.nivel;
     })
     .catch((error) => {
       console.error("Erro ao obter informações do usuário:", error);
     });
 
   document.querySelector("#botaoEditar").addEventListener("click", function () {
-    const nome = document.querySelector(".nome").value;
-    const email = document.querySelector(".email").value;
-    const cpf = document.querySelector(".cpf").value;
-    const senha = document.querySelector(".senha").value;
-    const nivel = document.querySelector(".nivel").value;
-    const status = document.querySelector(".status").value;
+    const nomeValue = nome.value;
+    const emailValue = email.value;
+    const cpfValue = cpf.value;
+    const senhaValue = senha.value;
+    const nivelValue = nivel.value;
 
     // Criando um objeto com os dados do usuário
     const usuario = {
-      nome: nome,
-      email: email,
-      cpf: cpf,
-      senha: senha,
-      nivel: nivel,
-      status: status,
+      nome: nomeValue,
+      email: emailValue,
+      cpf: cpfValue,
+      senha: senhaValue,
+      nivel: nivelValue,
     };
 
     fetch(`http://localhost:8080/usuarios/${usuarioId}`, {
