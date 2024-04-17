@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const senhaValue = senha.value;
     const nivelValue = nivel.value;
 
-    // Criando um objeto com os dados do usuário
+    
     const usuario = {
       nome: nomeValue,
       email: emailValue,

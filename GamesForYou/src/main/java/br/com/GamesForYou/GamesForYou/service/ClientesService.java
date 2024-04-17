@@ -43,13 +43,6 @@ public class ClientesService {
             clienteExistente.setCpf(clienteAtualizado.getCpf());
             clienteExistente.setData(clienteAtualizado.getData());
             clienteExistente.setGenero(clienteAtualizado.getGenero());
-            clienteExistente.setCep(clienteAtualizado.getCep());
-            clienteExistente.setLogradouro(clienteAtualizado.getLogradouro());
-            clienteExistente.setNumero(clienteAtualizado.getNumero());
-            clienteExistente.setComplemento(clienteAtualizado.getComplemento());
-            clienteExistente.setBairro(clienteAtualizado.getBairro());
-            clienteExistente.setCidade(clienteAtualizado.getCidade());
-            clienteExistente.setUf(clienteAtualizado.getUf());
 
             String novaSenha = clienteAtualizado.getSenha();
             if (novaSenha != null) {
