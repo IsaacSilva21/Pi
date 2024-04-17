@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const formulario = document.querySelector(".info form");
+  const formulario = document.getElementById("formCadastro");
 
   if (formulario) {
     formulario.addEventListener("submit", function (event) {
@@ -7,19 +7,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const Inome = document.querySelector(".nome");
       const Iemail = document.querySelector(".email");
+      const Icpf = document.querySelector(".cpf");
       const Isenha = document.querySelector(".senha");
       const Igenero = document.querySelector(".genero");
-      const IdataNascimento = document.querySelector("#data");
+      const Idata = document.querySelector(".data");
 
       const userData = {
         nome: Inome.value,
         email: Iemail.value,
+        cpf: Icpf.value,
         senha: Isenha.value,
         genero: Igenero.value,
-        dataNascimento: IdataNascimento.value,
+        dataNascimento: Idata.value,
       };
 
-      // Aqui você pode adicionar a validação das senhas se necessário
+      
 
       fetch("http://localhost:8080/clientes", {
         headers: {
@@ -30,8 +32,6 @@ document.addEventListener("DOMContentLoaded", function () {
         body: JSON.stringify(userData),
       })
         .then(function (res) {
-          console.log(res);
-          window.location.href = "listUsuarios.html";
           limpar();
         })
         .catch(function (error) {
