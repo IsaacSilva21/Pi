@@ -67,4 +67,16 @@ public class ClientesService {
             return false;
         }
     }
+    public Integer buscarIdPorEmail(String email) {
+       Clientes clientes = repository.findByEmail(email);
+        if (clientes != null) {
+            return clientes.getId();
+        } else {
+            throw new IllegalArgumentException("Usuário não encontrado para o e-mail fornecido");
+        }
+    }
+    
+    
+    
+
 }

@@ -7,7 +7,7 @@ function login() {
     senha: senha,
   };
 
-  fetch("http://localhost:8080/clintes/login", {
+  fetch("http://localhost:8080/clientes/login", {
     method: "POST",
     headers: {
       Accept: "application/json",

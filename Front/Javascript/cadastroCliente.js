@@ -18,11 +18,8 @@ document.addEventListener("DOMContentLoaded", function () {
         cpf: Icpf.value,
         senha: Isenha.value,
         genero: Igenero.value,
-        dataNascimento: Idata.value,
+        data: Idata.value,
       };
-
-      
-
       fetch("http://localhost:8080/clientes", {
         headers: {
           Accept: "application/json",

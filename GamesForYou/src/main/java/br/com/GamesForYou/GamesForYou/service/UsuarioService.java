@@ -61,7 +61,7 @@ public Boolean validarSenha(Usuario usuario) {
 
         if (optionalUsuario.isPresent()) {
             Usuario usuario = optionalUsuario.get();
-            return usuario.getStatus(); // Retorna o status do usuário (true para ativo, false para desativado)
+            return usuario.getStatus(); 
         } else {
             throw new IllegalArgumentException("Usuário não encontrado para o ID fornecido");
         }

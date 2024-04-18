@@ -54,7 +54,21 @@ public class ClientesController {
             return ResponseEntity.notFound().build();
         }
     }
+    
+    @PostMapping("/login")
+public ResponseEntity<Clientes> validarSenha(@RequestBody Clientes clientes) {
+    if (clientes == null || clientes.getEmail() == null || clientes.getSenha() == null) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
 
+    Boolean valid = clientesService.validarSenha(clientes);
+    if (!valid) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }
+     Integer clienteId = clientesService.buscarIdPorEmail(clientes.getEmail());
+    
+    return ResponseEntity.status(HttpStatus.OK).build();
+   }
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map<String, String> handleValidationException(MethodArgumentNotValidException ex) {
