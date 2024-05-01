@@ -11,7 +11,8 @@
   import br.com.GamesForYou.GamesForYou.service.EnderecoClientesService;
   
   @RestController
-  @RequestMapping("/enderecos-clientes")
+  @CrossOrigin("*")
+  @RequestMapping("/endereco")
   public class EnderecoClientesController {
       private EnderecoClientesService enderecoClientesService;
   

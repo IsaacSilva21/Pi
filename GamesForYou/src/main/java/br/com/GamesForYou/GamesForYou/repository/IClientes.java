@@ -9,5 +9,4 @@ import br.com.GamesForYou.GamesForYou.model.Clientes;
 
 public interface IClientes extends JpaRepository<Clientes, Integer> {
   Clientes findByEmail(String email);
-  
 }
