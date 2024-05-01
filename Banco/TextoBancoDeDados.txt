@@ -25,7 +25,7 @@ CREATE TABLE produtos (
     quantidade INT NOT NULL,
     avaliacao int NOT NULL,
     descricao VARCHAR(255) NOT NULL,
-    /*status BOOLEAN NOT NULL,*/
+	status BOOLEAN NOT NULL,
     imagem longblob NOT NULL
 );
 
@@ -44,10 +44,3 @@ CREATE TABLE clientes (
 
 select * from clientes; 
 drop table clientes;
-
-CREATE TABLE carrinho (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nome_produto VARCHAR(100) NOT NULL,
-	valor DECIMAL(10, 2) NOT NULL,
-    imagem longblob NOT NULL
-);

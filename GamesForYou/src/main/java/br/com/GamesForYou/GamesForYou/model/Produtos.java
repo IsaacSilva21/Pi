@@ -55,6 +55,9 @@ public class Produtos {
      @Column(name = "descricao", length = 2000, nullable = false)
      private String descricao;
 
+     @Column(name = "status", nullable = false)
+    private Boolean status;
+
     @Lob
     @Column(name = "imagem", nullable = false)
     private byte[] imagem;  
