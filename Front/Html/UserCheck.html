@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Games For You 🎮</title>
+  <link rel="stylesheet" href="/Front/Css/UserCheck.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="navbar">
+      <div class="header-inner-content">
+        <h1 class="logo">Games <span>For You</span></h1>
+        <nav>
+          <ul>
+            <li>Home</li>
+            <li>Produtos</li>
+            <li>Sobre</li>
+            <li>Contato</li>
+            <li>Conta</li>
+          </ul>
+        </nav>
+        <div class="nav-icon-container">
+          <img src="/Front/img/shopping_cart_FILL0_wght400_GRAD0_opsz24.svg" alt="Carrinho">
+          <img src="/Front/img/menu.png" alt="Menu" class="menu-button">
+        </div>
+      </div>
+    </div>
+    <div class="separacao">
+      <div class="info">
+        <p class="pagamento" name="pagamento">Pagamento</p>
+        <select class="forma" name="forma" id="forma" required>
+
+          <option value="1">Boleto</option>
+          <option value="2">Cartão</option>
+
+        </select>
+        <input type="text" id="inputBoleto" placeholder="Boleto Info">
+        <input type="text" id="inputNum" placeholder="Número do Cartão">
+        <input type="text" id="inputCod" placeholder="Código Verificador">
+        <input type="text" id="inputNom" placeholder="Nome Completo">
+        <input type="text" id="inputData" placeholder="Data de Vencimento">
+        <input type="text" id="inputQuan" placeholder="Quantidade de Parcelas">
+        <p class="preco">R$1000</p>
+
+        <button class="buttonadd">Fazer Pagamento</button>
+      </div>
+    </div>
+    <script src="/Front/Javascript/UserCheck.js"></script>
+</body>
+
+</html>
