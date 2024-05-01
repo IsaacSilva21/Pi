@@ -54,7 +54,7 @@ function listarProdutos() {
         const btnAlterar = document.createElement("button");
         btnAlterar.textContent = "Alterar";
         btnAlterar.onclick = function () {
-          console.log(`Alterar produto ${produto.nome}`);
+          window.location.href = `telaProduto.html?id=${produto.id}`;
         };
         divAlterar.appendChild(btnAlterar);
         divProduto.appendChild(divAlterar);
@@ -62,20 +62,54 @@ function listarProdutos() {
         const btnAtivar = document.createElement("button");
         btnAtivar.textContent = "Ativar";
         btnAtivar.disabled = produto.status;
+        function ativarProduto(produtoId) {
+          fetch(`http://localhost:8080/produtos/${produtoId}/ativar`, {
+            method: "PUT",
+          })
+            .then((response) => {
+              if (response.ok) {
+                return response.json();
+              } else {
+                throw new Error("Erro ao ativar o produto:");
+              }
+            })
+            .then((data) => {
+              console.log("Produto ativado:", data);
+              listarProdutos(); // Atualiza a lista de usuários
+            })
+            .catch((error) => {
+              console.error("Erro:", error);
+            });
+        }
         btnAtivar.onclick = function () {
-          console.log(`Ativar produto ${produto.nome}`);
-          btnAtivar.disabled = true;
-          btnDesativar.disabled = false;
+          ativarProduto(produto.id);
         };
         divButtons.appendChild(btnAtivar);
 
         const btnDesativar = document.createElement("button");
         btnDesativar.textContent = "Desativar";
         btnDesativar.disabled = !produto.status;
+        function desativarProduto(produtoId) {
+          fetch(`http://localhost:8080/produtos/${produtoId}/desativar`, {
+            method: "PUT",
+          })
+            .then((response) => {
+              if (response.ok) {
+                return response.json();
+              } else {
+                throw new Error("Erro ao desativar o Produto");
+              }
+            })
+            .then((data) => {
+              console.log("Produto desativado:", data);
+              listarProdutos(); // Atualiza a lista de usuários
+            })
+            .catch((error) => {
+              console.error("Erro:", error);
+            });
+        }
         btnDesativar.onclick = function () {
-          console.log(`Desativar produto ${produto.nome}`);
-          btnAtivar.disabled = false;
-          btnDesativar.disabled = true;
+          desativarProduto(produto.id);
         };
         divButtons.appendChild(btnDesativar);
         divProduto.appendChild(divButtons);

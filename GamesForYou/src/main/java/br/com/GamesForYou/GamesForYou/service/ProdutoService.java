@@ -29,6 +29,19 @@ public Produtos editarProduto(Produtos produtos){
   return produtosNovos;
 }
 
+public Produtos atualizarProduto(Integer id, Produtos novoProdutos) {
+    Produtos produtosExistente = repository.findById(id)
+.orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+  produtosExistente.setNome(novoProdutos.getNome());
+  produtosExistente.setValor(novoProdutos.getValor());
+  produtosExistente.setQuantidade(novoProdutos.getQuantidade());
+  produtosExistente.setAvaliacao(novoProdutos.getAvaliacao());
+  produtosExistente.setDescricao(novoProdutos.getDescricao());
+
+    return repository.save(produtosExistente);
+}
+
    public void salvarImagem(Integer id, MultipartFile imagem) throws IOException {
         Produtos produto = repository.findById(id).orElseThrow(() -> new IllegalArgumentException("Produto não encontrado"));
         produto.setImagem(imagem.getBytes());

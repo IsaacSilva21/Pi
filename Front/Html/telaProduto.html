@@ -29,8 +29,8 @@
             <input type="text" class="avaliacao" name="avaliacao" placeholder="Avaliação" required>
             <input type="text" class="descricao" name="descricao" placeholder="Descrição Detalhada" required>
             <div>
-              <button>Cancelar</button>
-              <button>Atualizar</button>
+              <button id="cancelar">Cancelar</button>
+              <button type="submit" id="botaoEditar" class="Alterar">Atualizar</button>
             </div>
           </form>
 
@@ -39,6 +39,14 @@
       </div>
     </div>
     <script src="/Front/Javascript/telaProduto.js"></script>
+    <script>
+      var botao = document.getElementById('cancelar');
+
+
+      botao.addEventListener('click', function () {
+
+        window.location.href = 'listProdutos.html';
+      });</script>
 </body>
 
 </html>

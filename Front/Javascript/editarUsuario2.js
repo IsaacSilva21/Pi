@@ -28,6 +28,7 @@ form.addEventListener("submit", function (event) {
   })
     .then((response) => {
       if (response.ok) {
+        window.location.href = "listUsuarios.html";
         return response.json();
       } else {
         throw new Error("Erro na solicitação: " + response.statusText);

@@ -17,7 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.GamesForYou.GamesForYou.model.Produtos;
+import br.com.GamesForYou.GamesForYou.model.Usuario;
+import br.com.GamesForYou.GamesForYou.repository.IProdutos;
+import br.com.GamesForYou.GamesForYou.repository.IUsuario;
 import br.com.GamesForYou.GamesForYou.service.ProdutoService;
+import br.com.GamesForYou.GamesForYou.service.UsuarioService;
 
 @RestController
 @CrossOrigin("*")
@@ -25,11 +29,14 @@ import br.com.GamesForYou.GamesForYou.service.ProdutoService;
 
 public class ProdutosController {
 
-    private ProdutoService produtoService;
+    private final IProdutos repository;
+    private final ProdutoService produtoService;
 
-    public ProdutosController(ProdutoService produtoService) {
+    public ProdutosController(ProdutoService produtoService, IProdutos repository) {
         this.produtoService = produtoService;
+        this.repository = repository;
     }
+
     @GetMapping
     public ResponseEntity<List<Produtos>> listaProdutos(){
         return ResponseEntity.status(200).body(produtoService.listarProdutos());
@@ -61,6 +68,39 @@ public class ProdutosController {
             return ResponseEntity.status(500).body("Erro ao processar a imagem.");
         }
     }
+    @PutMapping("/{id}")
+    public Produtos editarProduto(@PathVariable Integer id, @RequestBody Produtos produto) {
+        return produtoService.atualizarProduto(id, produto);
+    }
+
+    @PutMapping("/{id}/ativar")
+    public ResponseEntity<Produtos> ativarProduto(@PathVariable Integer id) {
+        Produtos produtoExistente = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        produtoExistente.setStatus(true);
+
+        
+        Produtos produtoAtualizado = repository.save(produtoExistente);
+
+        return ResponseEntity.ok(produtoAtualizado);
+    }
+
+    @PutMapping("/{id}/desativar")
+    public ResponseEntity<Produtos> desativarProduto(@PathVariable Integer id) {
+        Produtos produtoExistente = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+     
+        produtoExistente.setStatus(false);
+
+       
+        Produtos produtoAtualizado = repository.save(produtoExistente);
+
+        return ResponseEntity.ok(produtoAtualizado);
+    }
+
+
     @PutMapping
     public ResponseEntity<Produtos> editarProduto(@RequestBody Produtos produtos){
         return ResponseEntity.status(200).body(produtoService.editarProduto(produtos));
