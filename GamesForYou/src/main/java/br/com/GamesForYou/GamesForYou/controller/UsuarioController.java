@@ -47,10 +47,10 @@ public class UsuarioController {
   public ResponseEntity<Usuario> criarUsuario(@Valid @RequestBody Usuario usuario){
      return ResponseEntity.status(201).body(usuarioService.criaUsuario(usuario));
   }
-  @PutMapping
-    public ResponseEntity<Usuario> editarUsuario(@Valid @RequestBody Usuario usuario) {
-    return ResponseEntity.status(200).body(usuarioService.editarUsuario(usuario));
-}
+  @PutMapping("/{id}")
+    public Usuario editarUsuario(@PathVariable Integer id, @RequestBody Usuario novoUsuario) {
+        return usuarioService.atualizarUsuario(id, novoUsuario);
+    }
 
    @PostMapping("/login")
 public ResponseEntity<Usuario> validarSenha(@RequestBody Usuario usuario) {

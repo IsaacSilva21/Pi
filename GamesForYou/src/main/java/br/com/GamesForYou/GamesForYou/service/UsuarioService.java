@@ -36,6 +36,25 @@ public Usuario editarUsuario(Usuario usuario){
   return usuarioNovo;
 }
 
+public Usuario atualizarUsuario(Integer id, Usuario novoUsuario) {
+    // Buscar o usuário existente no banco de dados pelo ID
+    Usuario usuarioExistente = repository.findById(id)
+        .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+    usuarioExistente.setNome(novoUsuario.getNome());
+    usuarioExistente.setCpf(novoUsuario.getCpf());
+    
+    // Codificar a nova senha antes de definir
+    String senhaCodificada = this.passwordEncoder.encode(novoUsuario.getSenha());
+    usuarioExistente.setSenha(senhaCodificada);
+
+    // Atualizar o nível (ou outros campos)
+    usuarioExistente.setNivel(novoUsuario.getNivel());
+
+    // Salvar o usuário atualizado no banco de dados
+    return repository.save(usuarioExistente);
+}
+
 public Boolean validarSenha(Usuario usuario) {
         
         Usuario usuarioExistente = repository.findByEmail(usuario.getEmail());
