@@ -52,22 +52,56 @@ function listarUsuarios() {
         const btnAtivar = document.createElement("button");
         btnAtivar.textContent = "Ativar";
         btnAtivar.disabled = usuario.status;
+        function ativarUsuario(usuarioId) {
+          fetch(`http://localhost:8080/usuarios/${usuarioId}/ativar`, {
+            method: "PUT",
+          })
+            .then((response) => {
+              if (response.ok) {
+                return response.json();
+              } else {
+                throw new Error("Erro ao ativar o usuário");
+              }
+            })
+            .then((data) => {
+              console.log("Usuário ativado:", data);
+              listarUsuarios(); // Atualiza a lista de usuários
+            })
+            .catch((error) => {
+              console.error("Erro:", error);
+            });
+        }
         btnAtivar.onclick = function () {
-          console.log(`Ativar usuário ${usuario.nome}`);
-
-          btnAtivar.disabled = true;
-          btnDesativar.disabled = false;
+          ativarUsuario(usuario.id);
         };
         divButtons.appendChild(btnAtivar);
 
         const btnDesativar = document.createElement("button");
         btnDesativar.textContent = "Desativar";
         btnDesativar.disabled = !usuario.status;
+        function desativarUsuario(usuarioId) {
+          fetch(`http://localhost:8080/usuarios/${usuarioId}/desativar`, {
+            method: "PUT",
+          })
+            .then((response) => {
+              if (response.ok) {
+                return response.json();
+              } else {
+                throw new Error("Erro ao desativar o usuário");
+              }
+            })
+            .then((data) => {
+              console.log("Usuário desativado:", data);
+              listarUsuarios(); // Atualiza a lista de usuários
+            })
+            .catch((error) => {
+              console.error("Erro:", error);
+            });
+        }
         btnDesativar.onclick = function () {
-          console.log(`Desativar usuário ${usuario.nome}`);
-          btnAtivar.disabled = false;
-          btnDesativar.disabled = true;
+          desativarUsuario(usuario.id);
         };
+
         divButtons.appendChild(btnDesativar);
         divUsuario.appendChild(divAlterar);
         divUsuario.appendChild(divButtons);

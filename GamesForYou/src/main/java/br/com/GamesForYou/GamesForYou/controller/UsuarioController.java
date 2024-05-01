@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.GamesForYou.GamesForYou.model.Usuario;
-
+import br.com.GamesForYou.GamesForYou.repository.IUsuario;
 import br.com.GamesForYou.GamesForYou.service.UsuarioService;
 import jakarta.validation.Valid;
 
@@ -30,12 +30,13 @@ import jakarta.validation.Valid;
 public class UsuarioController {
 
  
+    private final IUsuario repository;
+    private final UsuarioService usuarioService;
 
- private UsuarioService usuarioService;
-
- public UsuarioController(UsuarioService usuarioService){
-      this.usuarioService = usuarioService;
- }
+    public UsuarioController(UsuarioService usuarioService, IUsuario repository) {
+        this.usuarioService = usuarioService;
+        this.repository = repository;
+    }
  
 
   @GetMapping
@@ -51,6 +52,35 @@ public class UsuarioController {
     public Usuario editarUsuario(@PathVariable Integer id, @RequestBody Usuario novoUsuario) {
         return usuarioService.atualizarUsuario(id, novoUsuario);
     }
+    
+    @PutMapping("/{id}/ativar")
+    public ResponseEntity<Usuario> ativarUsuario(@PathVariable Integer id) {
+        Usuario usuarioExistente = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        // Ativa o usuário
+        usuarioExistente.setStatus(true);
+
+        // Salva o usuário atualizado
+        Usuario usuarioAtualizado = repository.save(usuarioExistente);
+
+        return ResponseEntity.ok(usuarioAtualizado);
+    }
+
+    @PutMapping("/{id}/desativar")
+    public ResponseEntity<Usuario> desativarUsuario(@PathVariable Integer id) {
+        Usuario usuarioExistente = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        // Desativa o usuário
+        usuarioExistente.setStatus(false);
+
+        // Salva o usuário atualizado
+        Usuario usuarioAtualizado = repository.save(usuarioExistente);
+
+        return ResponseEntity.ok(usuarioAtualizado);
+    }
+
 
    @PostMapping("/login")
 public ResponseEntity<Usuario> validarSenha(@RequestBody Usuario usuario) {
