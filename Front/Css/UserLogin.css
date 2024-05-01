@@ -126,3 +126,8 @@ nav ul li:hover {
   width: 300px;
   margin-top: 40px;
 }
+
+#formLogin{
+  display: flex;
+  flex-direction: column;
+}
