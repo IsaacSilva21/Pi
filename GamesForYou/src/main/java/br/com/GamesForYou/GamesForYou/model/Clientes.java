@@ -38,7 +38,7 @@ public class Clientes {
    private String cpf;
 
    @NotBlank(message = "Data de nascimento é obrgatório!")
-   @Column(name = "dia", nullable = true)
+   @Column(name = "data", nullable = true)
    private String data;
 
    @NotBlank(message = "Gênero é obrgatório!")

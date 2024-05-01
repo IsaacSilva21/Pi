@@ -15,7 +15,7 @@ CREATE TABLE usuario (
 INSERT INTO usuario VALUES (null, 'adm', 'dddono@eEmail.com', 'password', '25354326746', 1, true);
 
 
-select * from produtos; 
+
 select * from usuario; 
 
 CREATE TABLE produtos (
@@ -28,7 +28,9 @@ CREATE TABLE produtos (
     imagem longblob NOT NULL
 );
 
-drop table produtos
+drop table produtos;
+select * from produtos; 
+
 CREATE TABLE clientes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(50) NOT NULL,
@@ -41,4 +43,3 @@ CREATE TABLE clientes (
 
 select * from clientes; 
 drop table clientes;
-
