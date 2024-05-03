@@ -55,7 +55,7 @@ public class Produtos {
      @Column(name = "descricao", length = 2000, nullable = false)
      private String descricao;
 
-     @Column(name = "status", nullable = false)
+    @Column(name = "status", nullable = false)
     private Boolean status;
 
     @Lob
