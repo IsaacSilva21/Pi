@@ -53,7 +53,7 @@ public class ProdutosController {
             produto.setQuantidade(quantidade);
             produto.setAvaliacao(avaliacao);
             produto.setDescricao(descricao);
-            produto.setStatus(null);
+            produto.setStatus(status);
             produto.setImagem(imagemBytes);
             
            

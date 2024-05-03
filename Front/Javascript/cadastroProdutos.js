@@ -18,11 +18,12 @@ document.addEventListener("DOMContentLoaded", function () {
       userData.append("quantidade", Iquantidade.value);
       userData.append("avaliacao", Iavaliacao.value);
       userData.append("descricao", Idescricao.value);
-      userData.append("imagem", Ifoto); // Adicionar a imagem ao FormData
+      userData.append("status", true);
+      userData.append("imagem", Ifoto);
 
       fetch("http://localhost:8080/produtos", {
         method: "POST",
-        body: userData, // Enviar FormData em vez de JSON
+        body: userData,
       })
         .then(function (res) {
           console.log(res);
