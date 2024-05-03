@@ -65,7 +65,7 @@ public ResponseEntity<Clientes> validarSenha(@RequestBody Clientes clientes) {
     if (!valid) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
-     Integer clienteId = clientesService.buscarIdPorEmail(clientes.getEmail());
+     
     
     return ResponseEntity.status(HttpStatus.OK).build();
    }

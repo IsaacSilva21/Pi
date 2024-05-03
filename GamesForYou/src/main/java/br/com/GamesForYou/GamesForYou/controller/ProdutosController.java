@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.GamesForYou.GamesForYou.model.Produtos;
-import br.com.GamesForYou.GamesForYou.model.Usuario;
 import br.com.GamesForYou.GamesForYou.repository.IProdutos;
-import br.com.GamesForYou.GamesForYou.repository.IUsuario;
+
 import br.com.GamesForYou.GamesForYou.service.ProdutoService;
-import br.com.GamesForYou.GamesForYou.service.UsuarioService;
+
+
 
 @RestController
 @CrossOrigin("*")
@@ -43,9 +43,9 @@ public class ProdutosController {
     }
     
     @PostMapping
-    public ResponseEntity<?> criarProduto(@RequestParam("imagem") MultipartFile imagem, @RequestParam("nome") String nome, @RequestParam("valor") BigDecimal valor, @RequestParam("quantidade") Integer quantidade, @RequestParam("avaliacao") Integer avaliacao, @RequestParam("descricao") String descricao) {
+    public ResponseEntity<?> criarProduto(@RequestParam("imagem") MultipartFile imagem, @RequestParam("nome") String nome, @RequestParam("valor") BigDecimal valor, @RequestParam("quantidade") Integer quantidade, @RequestParam("avaliacao") Integer avaliacao, @RequestParam("descricao") String descricao, @RequestParam("status") Boolean status) {
         try {
-            // Crie um novo produto com os dados recebidos
+          
             byte[] imagemBytes = imagem.getBytes();
             Produtos produto = new Produtos();
             produto.setNome(nome);
@@ -53,13 +53,12 @@ public class ProdutosController {
             produto.setQuantidade(quantidade);
             produto.setAvaliacao(avaliacao);
             produto.setDescricao(descricao);
+            produto.setStatus(null);
             produto.setImagem(imagemBytes);
             
-            // Salve a imagem no serviço e atribua ao produto, se necessário
-            
-            // Atribuir a imagem ao produto conforme necessário
+           
     
-            // Chame o serviço para criar o produto
+            
             Produtos novoProduto = produtoService.criaProduto(produto);
             
             return ResponseEntity.status(201).body(novoProduto);
