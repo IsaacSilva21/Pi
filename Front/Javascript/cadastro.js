@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
       const IconfirmarSenha = document.querySelector(".confirmar-senha");
       const Icpf = document.querySelector(".cpf");
       const Inivel = document.querySelector(".nivel");
-      const Istatus = document.querySelector(".status");
 
       if (Isenha.value !== IconfirmarSenha.value) {
         alert("As senhas não coincidem!");
