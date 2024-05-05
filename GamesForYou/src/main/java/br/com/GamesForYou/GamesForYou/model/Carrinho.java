@@ -32,9 +32,8 @@ public class Carrinho {
   @Column(name = "valor", columnDefinition = "TEXT", nullable = true)
   private double valor;
 
-  
-    //@Lob
-    //@Column(name = "imagem", nullable = false)
-    //private byte[] imagem;  
+  @Lob
+  @Column(name = "imagem", nullable = false)
+  private byte[] imagem;  
 
 }

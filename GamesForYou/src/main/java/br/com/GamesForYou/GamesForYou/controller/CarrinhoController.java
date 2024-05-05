@@ -1,6 +1,7 @@
 package br.com.GamesForYou.GamesForYou.controller;
 
 import java.io.IOException;
+
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -9,9 +10,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.GamesForYou.GamesForYou.model.Carrinho;
+
 import br.com.GamesForYou.GamesForYou.service.CarrinhoService;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/carrinho")
 public class CarrinhoController {
 
@@ -27,10 +30,32 @@ public class CarrinhoController {
         return ResponseEntity.ok(itensCarrinho);
     }
 
+    // @PostMapping
+    // public ResponseEntity<Carrinho> criarCarrinho(@RequestBody Carrinho carrinho) {
+    //     Carrinho carrinhoNovo = carrinhoService.criaCarrinho(carrinho);
+    //     return ResponseEntity.status(HttpStatus.CREATED).body(carrinhoNovo);
+    // }
+    
     @PostMapping
-    public ResponseEntity<Carrinho> criarCarrinho(@RequestBody Carrinho carrinho) {
-        Carrinho carrinhoNovo = carrinhoService.criaCarrinho(carrinho);
-        return ResponseEntity.status(HttpStatus.CREATED).body(carrinhoNovo);
+    public ResponseEntity<?> criarCarrinho(@RequestParam("imagem") MultipartFile imagem, @RequestParam("nome") String nome, @RequestParam("valor") Double valor) {
+        try {
+          
+            byte[] imagemBytes = imagem.getBytes();
+            Carrinho carrinho = new Carrinho();
+            carrinho.setNome(nome);
+            carrinho.setValor(valor);
+            carrinho.setImagem(imagemBytes);
+            
+           
+    
+            
+            Carrinho novoCarrinho = carrinhoService.criaCarrinho(carrinho);
+            
+            return ResponseEntity.status(201).body(novoCarrinho);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("Erro ao processar a imagem.");
+        }
     }
 
     @PutMapping("/atualizar/{id}")
@@ -39,21 +64,21 @@ public class CarrinhoController {
         return ResponseEntity.ok(itemAtualizado);
     }
 
-    // @PostMapping("/{id}/imagem")
-    // public ResponseEntity<String> salvarImagemDoItemCarrinho(@PathVariable Integer id, @RequestParam("imagem") MultipartFile imagem) {
-    //     try {
-    //         carrinhoService.salvarImagemDoItemCarrinho(id, imagem);
-    //         return ResponseEntity.ok("Imagem salva com sucesso.");
-    //     } catch (IOException e) {
-    //         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao salvar imagem.");
-    //     }
-    // }
+    @PostMapping("/{id}/imagem")
+    public ResponseEntity<String> salvarImagemDoItemCarrinho(@PathVariable Integer id, @RequestParam("imagem") MultipartFile imagem) {
+        try {
+            carrinhoService.salvarImagemDoItemCarrinho(id, imagem);
+            return ResponseEntity.ok("Imagem salva com sucesso.");
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao salvar imagem.");
+        }
+    }
 
-    // @GetMapping("/{id}/imagem")
-    // public ResponseEntity<byte[]> obterImagemDoItemCarrinho(@PathVariable Integer id) {
-    //     byte[] imagem = carrinhoService.obterImagemDoItemCarrinho(id);
-    //     return ResponseEntity.ok(imagem);
-    // }
+    @GetMapping("/{id}/imagem")
+    public ResponseEntity<byte[]> obterImagemDoItemCarrinho(@PathVariable Integer id) {
+        byte[] imagem = carrinhoService.obterImagemDoItemCarrinho(id);
+        return ResponseEntity.ok(imagem);
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Carrinho> obterItemCarrinhoPorId(@PathVariable Integer id) {

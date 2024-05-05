@@ -134,3 +134,15 @@ nav ul li:hover {
 .descricao {
   margin-top: 15px;
 }
+
+.precoarrums {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.precoarrums span {
+  align-self: flex-end;
+  color: #fbb710;
+  font-weight: bold;
+  font-size: 30px;
+}

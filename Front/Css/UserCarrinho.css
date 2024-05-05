@@ -132,3 +132,24 @@ nav ul li:hover {
   width: 1000px;
   height: 490px;
 }
+
+.div-carrinho {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+}
+
+.div-carrinho span {
+  font-weight: bold;
+  font-size: 20px;
+  margin-left: 40px;
+}
+
+.total-valor {
+  color: #fbb710;
+  font-weight: bold;
+  font-size: large;
+  margin-top: 20px;
+  margin-left: 600px;
+}

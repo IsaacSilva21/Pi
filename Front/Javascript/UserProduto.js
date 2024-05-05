@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .then((produto) => {
       // Preencher os elementos HTML com as informações do produto
       document.querySelector(".nome").innerText = produto.nome;
-      document.querySelector(".valor").innerText = `R$${produto.valor}`;
+      document.querySelector(".valor").innerText = `${produto.valor}`;
       // Converte o valor da avaliação para estrelas
       document.querySelector(".avaliacao").innerText = convertToStars(
         produto.avaliacao
@@ -49,6 +49,43 @@ document.addEventListener("DOMContentLoaded", function () {
         img.height = 300;
         fotosDiv.appendChild(img);
       };
+    })
+    .catch((error) => {
+      console.error("Erro ao obter imagem do produto:", error);
+    });
+});
+
+const buttonAdd = document.querySelector(".buttonadd");
+buttonAdd.addEventListener("click", function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const id = urlParams.get("id");
+
+  const Inome = document.querySelector(".nome");
+  const Ivalor = document.querySelector(".valor");
+
+  fetch(`http://localhost:8080/produtos/${id}/imagem`)
+    .then((response) => response.blob())
+    .then((blob) => {
+      const formData = new FormData();
+      formData.append("nome", Inome.textContent);
+      formData.append("valor", Ivalor.textContent);
+      formData.append("imagem", blob);
+
+      fetch(`http://localhost:8080/carrinho`, {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => {
+          if (response.ok) {
+            alert("Produto adicionado ao carrinho com sucesso!");
+          } else {
+            throw new Error("Erro ao adicionar produto ao carrinho");
+          }
+        })
+        .catch((error) => {
+          console.error("Erro ao adicionar produto ao carrinho:", error);
+          alert("Erro ao adicionar produto ao carrinho");
+        });
     })
     .catch((error) => {
       console.error("Erro ao obter imagem do produto:", error);
