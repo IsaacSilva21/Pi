@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
@@ -16,7 +17,7 @@ import lombok.Data;
 @Table(name = "carrinho")
 public class Carrinho {
 
-  // id, nome ,valor, img
+  
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,12 +28,13 @@ public class Carrinho {
   @Column(name ="nome", length = 50, nullable = true)
   private String nome;
 
-  @NotBlank(message = "valor é obrigatorio")
+  @NotNull(message = "valor é obrigatorio")
   @Column(name = "valor", columnDefinition = "TEXT", nullable = true)
   private double valor;
 
-  @Lob
-    @Column(name = "imagem", nullable = false)
-    private byte[] imagem;  
+  
+    //@Lob
+    //@Column(name = "imagem", nullable = false)
+    //private byte[] imagem;  
 
 }
