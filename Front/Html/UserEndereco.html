@@ -15,7 +15,9 @@
         <h1 class="logo">Games <span>For You</span></h1>
         <nav>
           <ul>
-            <li>Home</li>
+            <a href="/Front/Html/UserMenu.html">
+              <li>Home</li>
+            </a>
             <li>Produtos</li>
             <li>Sobre</li>
             <li>Contato</li>
@@ -23,7 +25,9 @@
           </ul>
         </nav>
         <div class="nav-icon-container">
-          <img src="/Front/img/shopping_cart_FILL0_wght400_GRAD0_opsz24.svg" alt="Carrinho">
+          <a href="/Front/Html/UserCarrinho.html">
+            <img src="/Front/img/shopping_cart_FILL0_wght400_GRAD0_opsz24.svg" alt="Carrinho">
+          </a>
           <img src="/Front/img/menu.png" alt="Menu" class="menu-button">
         </div>
       </div>
@@ -31,6 +35,7 @@
     <div class="separacao">
       <div class="info">
         <p class="cadastro" name="cadastro">Endereço</p>
+        <form id="formCadastro">
         <input type="text" id="cep" name="cep" pattern="[0-9]{5}-[0-9]{3}" placeholder="CEP" required>
         <input type="text" class="logradouro" name="logradouro" placeholder="Logradouro" required>
         <input type="text" id="numero" name="numero" placeholder="Numero" required>
@@ -39,6 +44,7 @@
         <input type="text" id="cidade" name="cidade" placeholder="Cidade" required>
         <input type="text" id="uf" name="uf" pattern="[A-Za-z]{2}" placeholder="UF" required>
         <button class="buttonadd">Enviar Endereço</button>
+      </form>
       </div>
     </div>
   </div>

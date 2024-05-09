@@ -22,7 +22,7 @@ public class EnderecoClientes {
    private Integer id;
 
  @NotBlank(message = "CEP é obrigatório!")
-   @Column(name = "cep", length = 8, nullable = true)
+   @Column(name = "cep", length = 9, nullable = true)
    private String cep;
 
    @NotBlank(message = "Logradouro é obrigatório!")

@@ -146,3 +146,7 @@ nav ul li:hover {
   font-weight: bold;
   font-size: 30px;
 }
+
+a {
+  text-decoration: none;
+}

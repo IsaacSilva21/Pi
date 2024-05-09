@@ -153,3 +153,7 @@ nav ul li:hover {
   margin-top: 20px;
   margin-left: 600px;
 }
+
+a {
+  text-decoration: none;
+}

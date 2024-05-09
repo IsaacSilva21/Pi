@@ -202,3 +202,7 @@ nav ul li:hover {
   margin-left: 20px;
   text-shadow: 0 0 6px #000;
 }
+
+a {
+  text-decoration: none;
+}

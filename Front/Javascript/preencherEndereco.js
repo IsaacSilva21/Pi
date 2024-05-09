@@ -20,4 +20,46 @@ document.addEventListener("DOMContentLoaded", function() {
       })
       .catch(error => console.error("Erro ao buscar CEP:", error));
   });
+
+  const formulario = document.getElementById("formCadastro");
+
+  if (formulario) {
+    formulario.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+        const userData = {
+        cep: cepInput.value,
+        logradouro: logradouroInput.value,
+        numero: numeroInput.value,
+        complemento: complementoInput.value,
+        bairro: bairroInput.value,
+        cidade: cidadeInput.value,
+        uf: ufInput.value,
+      };
+
+      fetch("http://localhost:8080/endereco", {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify(userData),
+      })
+        .then(function (res) {
+          console.log(res);
+          window.location.href = "UserMenu.html";
+          limpar();
+        })
+        .catch(function (error) {
+          console.error("Erro ao enviar os dados:", error);
+        });
+    });
+
+    function limpar() {
+      formulario.reset();
+    }
+  } else {
+    console.error("Formulário não encontrado!");
+  }
 });
+
