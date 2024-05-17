@@ -12,6 +12,9 @@ CREATE TABLE usuario (
 );
 
 
+INSERT INTO usuario VALUES (null, 'adm', 'dddono@eEmail.com', 'password', '25354326746', 1, true);
+
+
 
 select * from usuario; 
 
@@ -44,7 +47,7 @@ drop table clientes;
 
 CREATE TABLE endereco (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    cep VARCHAR(9) NOT NULL,
+    cep VARCHAR(8) NOT NULL,
     logradouro VARCHAR(255) NOT NULL,
     numero VARCHAR(50),
     complemento VARCHAR(255),
@@ -52,15 +55,25 @@ CREATE TABLE endereco (
     cidade VARCHAR(100) NOT NULL,
     uf CHAR(2) NOT NULL
 );
+select * from endereco_clientes; 
+drop table endereco_clientes;
 
-INSERT INTO endereco VALUES (null, '05893-050', 'Rua Carlo Dolci', '12', 'aa', "Rosas", "São Paulo", "SP");
+CREATE TABLE carrinho (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50),
+    valor DOUBLE NOT NULL,
+    qtd INT NOT NULL
+);
 
-select * from endereco; 
-drop table endereco;
+INSERT INTO carrinho (nome, valor) VALUES
+('Camiseta', 29.99),
+('Calça Jeans', 49.99),
+('Tênis Esportivo', 79.99),
+('Óculos de Sol', 39.99),
+('Relógio', 99.99),
+('Bolsa', 59.99),
+('Boné', 19.99),
+('Chinelo', 14.99);
 
-Create table carrinho(
-id int AUTO_INCREMENT PRIMARY key,
-nome varchar(50),
-valor double not null,
-imagem longblob NOT NULL
-)
+select * from carrinho; 
+drop table carrinho;

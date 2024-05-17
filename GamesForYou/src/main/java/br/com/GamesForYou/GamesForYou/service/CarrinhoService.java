@@ -18,46 +18,45 @@ public class CarrinhoService {
     }
 
     public List<Carrinho> listarCarrinho() {
-        List<Carrinho> lista = repository.findAll(); 
-        return lista;
+        return repository.findAll();
     }
 
     public Carrinho criaCarrinho(Carrinho carrinho) {
-        Carrinho carrinhoNovo = repository.save(carrinho); 
-        return carrinhoNovo;
+        return repository.save(carrinho);
     }
+
     public Carrinho atualizarItemCarrinho(Integer id, Carrinho novoItemCarrinho) {
-      Carrinho itemExistente = repository.findById(id)
-          .orElseThrow(() -> new RuntimeException("Item do carrinho não encontrado"));
+        Carrinho itemExistente = repository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Item do carrinho não encontrado"));
 
-      itemExistente.setNome(novoItemCarrinho.getNome());
-      itemExistente.setValor(novoItemCarrinho.getValor());
-      
+        itemExistente.setNome(novoItemCarrinho.getNome());
+        itemExistente.setValor(novoItemCarrinho.getValor());
+        itemExistente.setQuantidade(novoItemCarrinho.getQuantidade());
+        itemExistente.setImagem(novoItemCarrinho.getImagem()); 
 
-      return repository.save(itemExistente);
-  }
+        return repository.save(itemExistente);
+    }
 
-  public void salvarImagemDoItemCarrinho(Integer id, MultipartFile imagem) throws IOException {
-      Carrinho itemCarrinho = repository.findById(id)
-          .orElseThrow(() -> new IllegalArgumentException("Item do carrinho não encontrado"));
+    public void salvarImagemDoItemCarrinho(Integer id, MultipartFile imagem) throws IOException {
+        Carrinho itemCarrinho = repository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("Item do carrinho não encontrado"));
 
-      itemCarrinho.setImagem(imagem.getBytes());
-      repository.save(itemCarrinho);
-  }
+        itemCarrinho.setImagem(imagem.getBytes());
+        repository.save(itemCarrinho);
+    }
 
-  public byte[] obterImagemDoItemCarrinho(Integer id) {
-      Carrinho itemCarrinho = repository.findById(id)
-          .orElseThrow(() -> new IllegalArgumentException("Item do carrinho não encontrado"));
+    public byte[] obterImagemDoItemCarrinho(Integer id) {
+        Carrinho itemCarrinho = repository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("Item do carrinho não encontrado"));
 
-      return itemCarrinho.getImagem();
-  }
+        return itemCarrinho.getImagem();
+    }
 
+    public Carrinho obterItemCarrinhoPorId(Integer id) {
+        return repository.findById(id).orElse(null);
+    }
 
-  public Carrinho obterItemCarrinhoPorId(Integer id) {
-      return repository.findById(id).orElse(null);
-  }
-
-  public void excluirItemCarrinho(Integer id) {
-      repository.deleteById(id);
-  }
+    public void excluirItemCarrinho(Integer id) {
+        repository.deleteById(id);
+    }
 }

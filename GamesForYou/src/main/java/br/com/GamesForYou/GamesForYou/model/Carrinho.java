@@ -32,6 +32,10 @@ public class Carrinho {
   @Column(name = "valor", columnDefinition = "TEXT", nullable = true)
   private double valor;
 
+  @NotNull(message = "A quantidade é obrigatória")
+    @Column(name = "quantidade", nullable = false)
+    private Integer quantidade;
+
   @Lob
   @Column(name = "imagem", nullable = false)
   private byte[] imagem;  

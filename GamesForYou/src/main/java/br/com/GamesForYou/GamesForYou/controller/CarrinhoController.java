@@ -1,7 +1,6 @@
 package br.com.GamesForYou.GamesForYou.controller;
 
 import java.io.IOException;
-
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.GamesForYou.GamesForYou.model.Carrinho;
-
 import br.com.GamesForYou.GamesForYou.service.CarrinhoService;
 
 @RestController
@@ -30,23 +28,22 @@ public class CarrinhoController {
         return ResponseEntity.ok(itensCarrinho);
     }
 
-  
-    
     @PostMapping
-    public ResponseEntity<?> criarCarrinho(@RequestParam("imagem") MultipartFile imagem, @RequestParam("nome") String nome, @RequestParam("valor") Double valor) {
+    public ResponseEntity<?> criarCarrinho(
+            @RequestParam("imagem") MultipartFile imagem,
+            @RequestParam("nome") String nome,
+            @RequestParam("valor") Double valor,
+            @RequestParam("quantidade") Integer quantidade) {
         try {
-          
             byte[] imagemBytes = imagem.getBytes();
             Carrinho carrinho = new Carrinho();
             carrinho.setNome(nome);
             carrinho.setValor(valor);
+            carrinho.setQuantidade(quantidade);
             carrinho.setImagem(imagemBytes);
-            
-           
-    
-            
+
             Carrinho novoCarrinho = carrinhoService.criaCarrinho(carrinho);
-            
+
             return ResponseEntity.status(201).body(novoCarrinho);
         } catch (IOException e) {
             e.printStackTrace();
