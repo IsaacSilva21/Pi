@@ -32,7 +32,7 @@ public class CarrinhoService {
 
       itemExistente.setNome(novoItemCarrinho.getNome());
       itemExistente.setValor(novoItemCarrinho.getValor());
-      //itemExistente.setImagem(novoItemCarrinho.getImagem());
+      
 
       return repository.save(itemExistente);
   }

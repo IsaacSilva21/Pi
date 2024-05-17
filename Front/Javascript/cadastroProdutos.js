@@ -10,9 +10,9 @@ document.addEventListener("DOMContentLoaded", function () {
       const Iquantidade = document.querySelector(".quantidade");
       const Iavaliacao = document.querySelector(".avaliacao");
       const Idescricao = document.querySelector(".descricao");
-      const Ifoto = document.getElementById("imagemInput").files[0]; // Acessar o arquivo de imagem selecionado
+      const Ifoto = document.getElementById("imagemInput").files[0]; 
 
-      const userData = new FormData(); // Usar FormData para enviar dados do formulário, incluindo a imagem
+      const userData = new FormData(); 
       userData.append("nome", Inome.value);
       userData.append("valor", Ivalor.value);
       userData.append("quantidade", Iquantidade.value);
@@ -69,7 +69,7 @@ function previewButton() {
           var checkbox = document.createElement("input");
           checkbox.type = "checkbox";
           checkbox.className = "imagem-checkbox";
-          checkbox.id = "checkbox_" + index; // Adicionando um id único para cada checkbox
+          checkbox.id = "checkbox_" + index; 
           checkbox.addEventListener("click", function () {
             var checkboxes = document.querySelectorAll(".imagem-checkbox");
             checkboxes.forEach(function (cb) {
@@ -78,8 +78,8 @@ function previewButton() {
           });
 
           var label = document.createElement("label");
-          label.textContent = "Principal"; // Texto da label
-          label.setAttribute("for", "checkbox_" + index); // Associando a label ao checkbox
+          label.textContent = "Principal"; 
+          label.setAttribute("for", "checkbox_" + index); 
 
           var removerBtn = document.createElement("button");
           removerBtn.textContent = "Remover";
@@ -89,7 +89,7 @@ function previewButton() {
           });
           divImage.appendChild(img);
           divLabel.appendChild(checkbox);
-          divLabel.appendChild(label); // Adicionando a label ao divCheck
+          divLabel.appendChild(label); 
           divCheck.appendChild(divLabel);
           divCheck.appendChild(removerBtn);
           divTodos.appendChild(divImage);

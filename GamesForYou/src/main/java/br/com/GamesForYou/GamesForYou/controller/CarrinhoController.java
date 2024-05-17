@@ -30,11 +30,7 @@ public class CarrinhoController {
         return ResponseEntity.ok(itensCarrinho);
     }
 
-    // @PostMapping
-    // public ResponseEntity<Carrinho> criarCarrinho(@RequestBody Carrinho carrinho) {
-    //     Carrinho carrinhoNovo = carrinhoService.criaCarrinho(carrinho);
-    //     return ResponseEntity.status(HttpStatus.CREATED).body(carrinhoNovo);
-    // }
+  
     
     @PostMapping
     public ResponseEntity<?> criarCarrinho(@RequestParam("imagem") MultipartFile imagem, @RequestParam("nome") String nome, @RequestParam("valor") Double valor) {

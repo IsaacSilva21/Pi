@@ -58,10 +58,10 @@ public class UsuarioController {
         Usuario usuarioExistente = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
-        // Ativa o usuário
+        
         usuarioExistente.setStatus(true);
 
-        // Salva o usuário atualizado
+        
         Usuario usuarioAtualizado = repository.save(usuarioExistente);
 
         return ResponseEntity.ok(usuarioAtualizado);
@@ -72,10 +72,10 @@ public class UsuarioController {
         Usuario usuarioExistente = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
-        // Desativa o usuário
+        
         usuarioExistente.setStatus(false);
 
-        // Salva o usuário atualizado
+        
         Usuario usuarioAtualizado = repository.save(usuarioExistente);
 
         return ResponseEntity.ok(usuarioAtualizado);
