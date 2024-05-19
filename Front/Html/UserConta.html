@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Games For You 🎮</title>
-  <link rel="stylesheet" href="/Front/Css/UserLogin.css">
+  <link rel="stylesheet" href="/Front/Css/UserConta.css">
 </head>
 
 <body>
@@ -15,10 +15,7 @@
         <h1 class="logo">Games <span>For You</span></h1>
         <nav>
           <ul>
-            <a href="/Front/Html/UserMenu.html">
-              <li>Home</li>
-            </a>
-
+            <li><a href="/Front/Html/UserMenu.html">Home</a></li>
             <li>Sobre</li>
             <li>Contato</li>
             <li>Conta</li>
@@ -34,17 +31,22 @@
     </div>
     <div class="separacao">
       <div class="info">
-        <p class="login" name="login">Login</p>
-        <form id="formLogin">
-          <input type="email" class="email" name="email" id="email" placeholder="Email" required>
-          <input type="password" class="senha" name="senha" id="senha" placeholder="Senha" required>
-          <button class="buttonadd" type="button" onclick="login()">Entrar</button>
-        </form>
-        <p class="contantem">Se você não possui conta <a href="/Front/Html/UserCadastro.html">Clique aqui</a></p>
+        <p class="resumo" name="resumo">Suas Informações</p>
+        <div class="itens">
+          <ul>
+            <li class="nome">Nome</li>
+            <li class="email">Email</li>
+            <li class="genero">Gênero</li>
+            <li class="data">Data de nascimento</li>
+          </ul>
+        </div>
+        <button class="buttonadd">Verificar endereços</button>
+
       </div>
 
     </div>
-    <script src="/Front/Javascript/loginClientes.js"></script>
+    <script src="/Front/Javascript/UserConta.js"></script>
+  </div>
 </body>
 
 </html>

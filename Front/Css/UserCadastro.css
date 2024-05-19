@@ -125,16 +125,13 @@ nav ul li:hover {
   border-radius: 5px;
   width: 300px;
   margin-top: 40px;
+  color: aliceblue;
 }
 
 #data {
   margin-top: 0;
   color: gray;
   margin-top: 5px;
-}
-
-.genero {
-  margin-bottom: 15px;
 }
 
 a {

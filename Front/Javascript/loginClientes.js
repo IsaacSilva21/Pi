@@ -16,16 +16,23 @@ function login() {
     body: JSON.stringify(usuario),
   })
     .then((response) => {
-      if (response.status === 200) {
-        window.location.href = "/Front/Html/UserMenu.html";
+      if (response.ok) {
+        return response.json(); // Parse the response body as JSON
       } else if (response.status === 400) {
-        alert("Acesso negado. Verifique suas credenciais.");
+        throw new Error("Acesso negado. Verifique suas credenciais.");
       } else {
         throw new Error("Erro durante a requisição.");
       }
     })
+    .then((data) => {
+      // Assuming the server returns the clientId in the response
+      const clienteId = data.clienteId;
+      localStorage.setItem("loggedIn", true);
+      localStorage.setItem("clienteId", clienteId);
+      window.location.href = "/Front/Html/UserMenu.html";
+    })
     .catch((error) => {
-      console.error("Erro durante a requisição:", error);
-      alert("Ocorreu um erro durante o login. Tente novamente mais tarde.");
+      console.error("Erro durante a requisição:", error.message);
+      alert(error.message);
     });
 }

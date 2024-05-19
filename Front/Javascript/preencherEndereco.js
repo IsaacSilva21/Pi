@@ -1,4 +1,14 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
+  // Verificar ID do cliente na URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const userId = urlParams.get("id");
+
+  if (!userId || isNaN(userId) || userId <= 0) {
+    alert("ID de usuário inválido ou não fornecido.");
+  } else {
+    alert("ID do cliente: " + userId);
+  }
+
   const cepInput = document.getElementById("cep");
   const logradouroInput = document.querySelector(".logradouro");
   const numeroInput = document.getElementById("numero");
@@ -7,18 +17,18 @@ document.addEventListener("DOMContentLoaded", function() {
   const cidadeInput = document.getElementById("cidade");
   const ufInput = document.getElementById("uf");
 
-  cepInput.addEventListener("change", function() {
+  cepInput.addEventListener("change", function () {
     const cep = cepInput.value.replace("-", "");
     fetch(`https://viacep.com.br/ws/${cep}/json/`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         logradouroInput.value = data.logradouro || "";
         complementoInput.value = data.complemento || "";
         bairroInput.value = data.bairro || "";
         cidadeInput.value = data.localidade || "";
         ufInput.value = data.uf || "";
       })
-      .catch(error => console.error("Erro ao buscar CEP:", error));
+      .catch((error) => console.error("Erro ao buscar CEP:", error));
   });
 
   const formulario = document.getElementById("formCadastro");
@@ -27,7 +37,8 @@ document.addEventListener("DOMContentLoaded", function() {
     formulario.addEventListener("submit", function (event) {
       event.preventDefault();
 
-        const userData = {
+      const userData = {
+        id: userId,
         cep: cepInput.value,
         logradouro: logradouroInput.value,
         numero: numeroInput.value,
@@ -46,7 +57,14 @@ document.addEventListener("DOMContentLoaded", function() {
         body: JSON.stringify(userData),
       })
         .then(function (res) {
-          console.log(res);
+          if (res.ok) {
+            return res.json();
+          } else {
+            throw new Error("Erro na resposta do servidor");
+          }
+        })
+        .then(function (data) {
+          console.log("Endereço cadastrado:", data);
           window.location.href = "UserMenu.html";
           limpar();
         })
@@ -62,4 +80,3 @@ document.addEventListener("DOMContentLoaded", function() {
     console.error("Formulário não encontrado!");
   }
 });
-

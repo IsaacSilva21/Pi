@@ -39,13 +39,20 @@ document.addEventListener("DOMContentLoaded", function () {
         body: JSON.stringify(userData),
       })
         .then(function (res) {
+          if (res.ok) {
+            return res.json();
+          } else {
+            throw new Error("Erro na resposta do servidor");
+          }
+        })
+        .then(function (cliente) {
           limpar();
+          window.location.href = `UserEndereco.html?id=${cliente.id}`;
         })
         .catch(function (error) {
           console.error("Erro ao enviar os dados:", error);
         });
     });
-
     function limpar() {
       formulario.reset();
     }
@@ -53,7 +60,6 @@ document.addEventListener("DOMContentLoaded", function () {
     console.error("Formulário não encontrado!");
   }
 
-  // Função para validar CPF
   function isValidCPF(cpf) {
     cpf = cpf.replace(/[^\d]/g, "");
 

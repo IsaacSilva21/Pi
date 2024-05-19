@@ -57,14 +57,13 @@ public class ClientesService {
         }
     }
 
-    public Boolean validarSenha(Clientes cliente) {
-
+    public Integer validarSenha(Clientes cliente) {
         Clientes clienteExistente = repository.findByEmail(cliente.getEmail());
 
         if (clienteExistente != null && passwordEncoder.matches(cliente.getSenha(), clienteExistente.getSenha())) {
-            return true;
+            return clienteExistente.getId();
         } else {
-            return false;
+            return null; 
         }
     }
     public Integer buscarIdPorEmail(String email) {
