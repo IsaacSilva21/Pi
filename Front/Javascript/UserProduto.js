@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const urlParams = new URLSearchParams(window.location.search);
   const id = urlParams.get("id");
 
-  
   function convertToStars(avaliacao) {
     let stars = "";
     for (let i = 0; i < avaliacao; i++) {
@@ -11,14 +10,12 @@ document.addEventListener("DOMContentLoaded", function () {
     return stars;
   }
 
-  
   fetch(`http://localhost:8080/produtos/${id}`)
     .then((response) => response.json())
     .then((produto) => {
-      
       document.querySelector(".nome").innerText = produto.nome;
       document.querySelector(".valor").innerText = `${produto.valor}`;
-      
+
       document.querySelector(".avaliacao").innerText = convertToStars(
         produto.avaliacao
       );
@@ -32,7 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
   fetch(`http://localhost:8080/produtos/${id}/imagem`)
     .then((response) => response.blob())
     .then((blob) => {
-      
       const imageUrl = URL.createObjectURL(blob);
 
       const img = document.createElement("img");
@@ -42,7 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
       fotosDiv.className = "div-fotos";
 
       img.onload = function () {
-        
         img.width = 500;
         img.height = 300;
         fotosDiv.appendChild(img);
@@ -68,6 +63,7 @@ buttonAdd.addEventListener("click", function () {
       formData.append("nome", Inome.textContent);
       formData.append("valor", Ivalor.textContent);
       formData.append("imagem", blob);
+      formData.append("quantidade", 1);
 
       fetch(`http://localhost:8080/carrinho`, {
         method: "POST",

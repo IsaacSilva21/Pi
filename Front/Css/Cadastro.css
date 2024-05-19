@@ -62,3 +62,7 @@ button {
   height: 35px;
   border-radius: 20px;
 }
+
+.input-error {
+  border: 2px solid red;
+}

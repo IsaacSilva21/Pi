@@ -135,9 +135,10 @@ nav ul li:hover {
 
 .div-carrinho {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   align-items: center;
   justify-items: center;
+  margin-left: 20px;
 }
 
 .div-carrinho span {
@@ -156,4 +157,28 @@ nav ul li:hover {
 
 a {
   text-decoration: none;
+}
+
+.btnMais,
+.btnMenos,
+.btnDeletar {
+  background-color: #131313;
+  color: #fbb710;
+  padding: 4px;
+  font-size: large;
+  border: 1px solid #fbb710;
+  width: 30px;
+  border-radius: 5px;
+}
+
+.div-quantidade {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.div-quantidade span {
+  margin-right: 9px;
+  margin-top: 6px;
+  margin-bottom: 6px;
 }

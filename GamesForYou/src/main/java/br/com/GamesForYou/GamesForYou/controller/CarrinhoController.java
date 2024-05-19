@@ -2,6 +2,7 @@ package br.com.GamesForYou.GamesForYou.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -54,6 +55,12 @@ public class CarrinhoController {
     @PutMapping("/atualizar/{id}")
     public ResponseEntity<Carrinho> atualizarItemCarrinho(@PathVariable Integer id, @RequestBody Carrinho novoItemCarrinho) {
         Carrinho itemAtualizado = carrinhoService.atualizarItemCarrinho(id, novoItemCarrinho);
+        return ResponseEntity.ok(itemAtualizado);
+    }
+
+    @PutMapping("/{id}/quantidade")
+    public ResponseEntity<Carrinho> atualizarQuantidade(@PathVariable Integer id, @RequestBody Map<String, Integer> quantidade) {
+        Carrinho itemAtualizado = carrinhoService.atualizarQuantidade(id, quantidade.get("quantidade"));
         return ResponseEntity.ok(itemAtualizado);
     }
 

@@ -140,3 +140,7 @@ nav ul li:hover {
 a {
   text-decoration: none;
 }
+
+.input-error {
+  border: 2px solid red;
+}

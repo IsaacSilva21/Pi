@@ -37,6 +37,14 @@ public class CarrinhoService {
         return repository.save(itemExistente);
     }
 
+    public Carrinho atualizarQuantidade(Integer id, Integer quantidade) {
+        Carrinho itemCarrinho = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Item do carrinho não encontrado"));
+        
+        itemCarrinho.setQuantidade(quantidade);
+        return repository.save(itemCarrinho);
+    }
+
     public void salvarImagemDoItemCarrinho(Integer id, MultipartFile imagem) throws IOException {
         Carrinho itemCarrinho = repository.findById(id)
             .orElseThrow(() -> new IllegalArgumentException("Item do carrinho não encontrado"));
