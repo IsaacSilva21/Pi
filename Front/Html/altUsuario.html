@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Alterar</title>
-  <link rel="stylesheet" href="/Front/Css/Cadastro.css">
+  <link rel="stylesheet" href="/Front/Css/altUsuario.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet">
@@ -16,9 +16,13 @@
     <div class="box">
       <h1>Alterar Usuario</h1>
       <form id="formCadastro">
+        <p>Nome:</p>
         <input type="text" class="nome" name="nome" placeholder="Nome" required>
+        <p>CPF:</p>
         <input type="text" class="cpf" name="cpf" placeholder="CPF (somente números)" maxlength="11" pattern="\d*" required>
+        <p>Senha:</p>
         <input type="password" class="senha" name="senha" id="senha" placeholder="Senha" required>
+        <p>Confirmar Senha:</p>
         <input type="password" class="confirmar-senha" id="confirmarSenha" placeholder="Confirmar Senha" required>
         <select class="nivel" name="nivel" required>
 

@@ -2,11 +2,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const urlParams = new URLSearchParams(window.location.search);
   const id = urlParams.get("id");
 
- 
   fetch(`http://localhost:8080/produtos/${id}`)
     .then((response) => response.json())
     .then((produto) => {
-    
       document.querySelector(".nome").value = produto.nome;
       document.querySelector(".valor").value = produto.valor;
       document.querySelector(".quantidade").value = produto.quantidade;
@@ -20,21 +18,15 @@ document.addEventListener("DOMContentLoaded", function () {
   fetch(`http://localhost:8080/produtos/${id}/imagem`)
     .then((response) => response.blob())
     .then((blob) => {
-     
       const imageUrl = URL.createObjectURL(blob);
 
-      
       const img = document.createElement("img");
       img.src = imageUrl;
 
-      
       const fotosDiv = document.querySelector(".fotos");
       fotosDiv.className = "div-fotos";
 
       img.onload = function () {
-        
-        img.width = 400;
-        img.height = 300;
         fotosDiv.appendChild(img);
       };
     })
