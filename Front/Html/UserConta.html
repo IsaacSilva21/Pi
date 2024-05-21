@@ -18,7 +18,9 @@
             <li><a href="/Front/Html/UserMenu.html">Home</a></li>
             <li>Sobre</li>
             <li>Contato</li>
-            <li>Conta</li>
+            <a href="/Front/Html/UserConta.html">
+              <li>Conta</li>
+            </a>
           </ul>
         </nav>
         <div class="nav-icon-container">
@@ -40,12 +42,20 @@
             <li class="data">Data de nascimento</li>
           </ul>
         </div>
-        <button class="buttonadd">Verificar endereços</button>
+        <button class="buttonadd" id="buttonadd">Verificar endereços</button>
 
       </div>
 
     </div>
     <script src="/Front/Javascript/UserConta.js"></script>
+    <script>
+      var botao = document.getElementById('buttonadd');
+
+
+      botao.addEventListener('click', function () {
+
+        window.location.href = 'UserVerifiEndereco.html';
+      });</script>
   </div>
 </body>
 
