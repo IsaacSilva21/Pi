@@ -17,22 +17,22 @@ function login() {
   })
     .then((response) => {
       if (response.ok) {
-        return response.json(); // Parse the response body as JSON
+        return response.json(); 
       } else if (response.status === 400) {
         throw new Error("Acesso negado. Verifique suas credenciais.");
       } else {
-        throw new Error("Erro durante a requisição.");
+        throw new Error("Usuario não encontrado!");
       }
     })
     .then((data) => {
-      // Assuming the server returns the clientId in the response
+      
       const clienteId = data.clienteId;
       localStorage.setItem("loggedIn", true);
       localStorage.setItem("clienteId", clienteId);
       window.location.href = "/Front/Html/UserMenu.html";
     })
     .catch((error) => {
-      console.error("Erro durante a requisição:", error.message);
+      console.error("Usuario não encontrado:", error.message);
       alert(error.message);
     });
 }
