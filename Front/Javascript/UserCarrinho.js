@@ -1,3 +1,7 @@
+document.addEventListener("DOMContentLoaded", function () {
+  listarCarrinho();
+});
+
 function listarCarrinho() {
   let totalValor = 0;
 
@@ -94,6 +98,23 @@ function listarCarrinho() {
       totalElement.className = "total-valor";
       totalElement.textContent = `Total: R$ ${totalValor.toFixed(2)}`;
       listaCarrinho.appendChild(totalElement);
+
+      // Adiciona o campo para cálculo de frete
+      const freteDiv = document.createElement("div");
+      freteDiv.className = "frete";
+      freteDiv.innerHTML = `
+        <label for="cep">Digite seu CEP:</label>
+        <input type="text" id="cep" name="cep">
+        <button class="buttoncalc">Calcular Frete</button>
+        <p id="resultadoFrete"></p>
+        <p id="endereco"></p>
+      `;
+      listaCarrinho.appendChild(freteDiv);
+
+      // Adiciona evento ao botão de calcular frete
+      document.querySelector('.buttoncalc').addEventListener('click', function () {
+        calcularFrete(totalValor);
+      });
     })
     .catch(function (error) {
       console.error("Erro ao carregar o carrinho:", error);
@@ -139,6 +160,41 @@ function deletarItem(id) {
     });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  listarCarrinho();
-});
+function calcularFrete(totalValor) {
+  const cepInput = document.getElementById('cep');
+  const resultadoFrete = document.getElementById('resultadoFrete');
+  const enderecoDisplay = document.getElementById('endereco');
+  const cep = cepInput.value;
+
+  // Verifica se o CEP foi preenchido
+  if (cep === '') {
+    resultadoFrete.textContent = 'Por favor, insira um CEP.';
+    return;
+  }
+
+  // Busca o endereço pelo CEP usando a API do ViaCEP
+  fetch(`https://viacep.com.br/ws/${cep}/json/`)
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.erro) {
+        enderecoDisplay.textContent = 'CEP inválido.';
+        return;
+      }
+
+      // Exibe o nome da rua
+      enderecoDisplay.textContent = `Endereço: ${data.logradouro}, ${data.bairro}, ${data.localidade} - ${data.uf}`;
+
+      // Gera um valor aleatório para o frete
+      const frete = (Math.random() * (50 - 10) + 10).toFixed(2); // Gera valor entre 10 e 50
+
+      // Calcula o valor total com frete
+      const totalComFrete = (parseFloat(totalValor) + parseFloat(frete)).toFixed(2);
+
+      // Exibe o valor do frete e o total com frete
+      resultadoFrete.innerHTML = `O valor do frete é R$ ${frete}.<br>Total com frete: R$ ${totalComFrete}.`;
+    })
+    .catch((error) => {
+      console.error("Erro ao buscar o endereço:", error);
+      enderecoDisplay.textContent = 'Erro ao buscar o endereço. Tente novamente mais tarde.';
+    });
+}
