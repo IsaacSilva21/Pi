@@ -40,10 +40,16 @@
         <div class="renderizados">
           <ul id="listaCarrinho"></ul>
         </div>
-        <button class="buttonadd">Fazer Pagamento</button>
+        <button class="buttonadd" id="buttonadd">Fazer Pagamento</button>
       </div>
     </div>
     <script src="/Front/Javascript/UserCarrinho.js"></script>
+    <script>
+      var botao = document.getElementById('buttonadd');
+      botao.addEventListener('click', function () {
+        window.location.href = "UserCheckEndereco.html";
+      });
+    </script>
 </body>
 
 </html>

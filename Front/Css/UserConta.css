@@ -114,7 +114,8 @@ nav ul li:hover {
   font-weight: bold;
   color: aliceblue;
   margin-right: 15px;
-  margin-top: 60px;
+  margin-left: 15px;
+  margin-top: 300px;
   align-self: flex-end;
 }
 
@@ -124,7 +125,7 @@ nav ul li:hover {
   padding: 10px;
   border-radius: 5px;
   width: 300px;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 .info p {
@@ -147,4 +148,9 @@ nav ul li:hover {
 
 a {
   text-decoration: none;
+}
+
+.botoes {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }

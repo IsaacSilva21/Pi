@@ -96,8 +96,8 @@ function listarCarrinho() {
 
       const totalElement = document.createElement("div");
       totalElement.className = "total-valor";
+      totalElement.id = "totalValor"; // Adiciona o ID aqui
       totalElement.textContent = `Total: R$ ${totalValor.toFixed(2)}`;
-      listaCarrinho.appendChild(totalElement);
 
       // Adiciona o campo para cálculo de frete
       const freteDiv = document.createElement("div");
@@ -110,11 +110,14 @@ function listarCarrinho() {
         <p id="endereco"></p>
       `;
       listaCarrinho.appendChild(freteDiv);
+      listaCarrinho.appendChild(totalElement);
 
       // Adiciona evento ao botão de calcular frete
-      document.querySelector('.buttoncalc').addEventListener('click', function () {
-        calcularFrete(totalValor);
-      });
+      document
+        .querySelector(".buttoncalc")
+        .addEventListener("click", function () {
+          calcularFrete(totalValor);
+        });
     })
     .catch(function (error) {
       console.error("Erro ao carregar o carrinho:", error);
@@ -161,14 +164,15 @@ function deletarItem(id) {
 }
 
 function calcularFrete(totalValor) {
-  const cepInput = document.getElementById('cep');
-  const resultadoFrete = document.getElementById('resultadoFrete');
-  const enderecoDisplay = document.getElementById('endereco');
+  const cepInput = document.getElementById("cep");
+  const resultadoFrete = document.getElementById("resultadoFrete");
+  const enderecoDisplay = document.getElementById("endereco");
+  const totalElement = document.getElementById("totalValor"); // Obtém o elemento pelo ID
   const cep = cepInput.value;
 
   // Verifica se o CEP foi preenchido
-  if (cep === '') {
-    resultadoFrete.textContent = 'Por favor, insira um CEP.';
+  if (cep === "") {
+    resultadoFrete.textContent = "Por favor, insira um CEP.";
     return;
   }
 
@@ -177,7 +181,7 @@ function calcularFrete(totalValor) {
     .then((response) => response.json())
     .then((data) => {
       if (data.erro) {
-        enderecoDisplay.textContent = 'CEP inválido.';
+        enderecoDisplay.textContent = "CEP inválido.";
         return;
       }
 
@@ -188,13 +192,17 @@ function calcularFrete(totalValor) {
       const frete = (Math.random() * (50 - 10) + 10).toFixed(2); // Gera valor entre 10 e 50
 
       // Calcula o valor total com frete
-      const totalComFrete = (parseFloat(totalValor) + parseFloat(frete)).toFixed(2);
+      const totalComFrete = (
+        parseFloat(totalValor) + parseFloat(frete)
+      ).toFixed(2);
 
       // Exibe o valor do frete e o total com frete
-      resultadoFrete.innerHTML = `O valor do frete é R$ ${frete}.<br>Total com frete: R$ ${totalComFrete}.`;
+      resultadoFrete.innerHTML = `O valor do frete é R$ ${frete}.`;
+      totalElement.textContent = `Total: R$ ${totalComFrete}`;
     })
     .catch((error) => {
       console.error("Erro ao buscar o endereço:", error);
-      enderecoDisplay.textContent = 'Erro ao buscar o endereço. Tente novamente mais tarde.';
+      enderecoDisplay.textContent =
+        "Erro ao buscar o endereço. Tente novamente mais tarde.";
     });
 }
