@@ -2,7 +2,8 @@ package br.com.GamesForYou.GamesForYou.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
@@ -16,8 +17,12 @@ import lombok.Data;
 public class EnderecoClientes {
 
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
    @Column(name = "id")
    private Integer id;
+
+   @Column(name = "id_cliente")
+   private Integer id_cliente;
 
   @NotBlank(message = "CEP é obrigatório!")
    @Column(name = "cep", length = 9, nullable = true)
@@ -44,5 +49,12 @@ public class EnderecoClientes {
    @NotBlank(message = "UF é obrigatória!")
    @Column(name = "uf", length = 2, nullable = true)
    private String uf;
+   
+   public Integer getId_cliente() {
+    return this.id_cliente;
+}
 
+public void setId_cliente(Integer id_cliente) {
+    this.id_cliente = id_cliente;
+}
 }

@@ -21,26 +21,26 @@ import lombok.Data;
 @Table(name = "pedidos") 
 public class Pedidos {
         
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Column(name = "id")
-        private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
 
-     @NotNull(message = "O preço é obrigatório")
+    @NotNull(message = "O preço é obrigatório")
     @DecimalMin(value = "0.00", message = "O preço não pode ser negativo") 
     @DecimalMax(value = "999999.99", message = "O preço não pode ser maior que 999999.99") 
     @Column(name = "valor", precision = 10, scale = 2, nullable = false)
-     private BigDecimal valor;
+    private BigDecimal valor;
    
-     @NotNull(message = "A quantidade é obrigatória")
+    @NotNull(message = "A quantidade é obrigatória")
     @Min(value = 0, message = "A quantidade não pode ser negativa") 
     @Max(value = 1000, message = "A quantidade não pode ser maior que 1000") 
     @Column(name = "quantidade", nullable = false)
     private Integer quantidade;
 
     @NotBlank(message = "O nome é obrigatório")
-     @Column(name = "nomeDoCli", length = 200, nullable = true)
-     private String nomeDoCli;
+    @Column(name = "nomeDoCli", length = 200, nullable = true)
+    private String nomeDoCli;
  
     @NotBlank(message = "CEP é obrigatório!")
     @Column(name = "cep", length = 9, nullable = true)
@@ -70,4 +70,11 @@ public class Pedidos {
  
     @Column(name = "status", nullable = false)
     private String status;
+
+    @Column(name = "id_cliente", nullable = false)
+    private Integer idCliente;
+
+    @NotBlank(message = "O método de pagamento é obrigatório")
+    @Column(name = "metodoPag", nullable = false)
+    private String metodoPag;
 }

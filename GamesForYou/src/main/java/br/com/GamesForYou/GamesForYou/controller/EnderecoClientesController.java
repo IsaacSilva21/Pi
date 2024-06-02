@@ -9,22 +9,24 @@
   
   import br.com.GamesForYou.GamesForYou.model.EnderecoClientes;
   import br.com.GamesForYou.GamesForYou.service.EnderecoClientesService;
-  
   @RestController
   @CrossOrigin("*")
   @RequestMapping("/endereco")
   public class EnderecoClientesController {
-      private EnderecoClientesService enderecoClientesService;
+      private final EnderecoClientesService enderecoClientesService;
   
       public EnderecoClientesController(EnderecoClientesService enderecoClientesService) {
           this.enderecoClientesService = enderecoClientesService;
       }
   
-      @GetMapping
-      public ResponseEntity<List<EnderecoClientes>> listarEnderecosClientes() {
-          List<EnderecoClientes> enderecosClientes = enderecoClientesService.listarEnderecosClientes();
+      @GetMapping("/cliente/{idCliente}")
+      public ResponseEntity<List<EnderecoClientes>> listarEnderecosPorCliente(@PathVariable Integer idCliente) {
+          List<EnderecoClientes> enderecosClientes = enderecoClientesService.listarEnderecosPorIdCliente(idCliente);
           return ResponseEntity.ok().body(enderecosClientes);
       }
+      // outros métodos do controlador...
+  
+
   
       @PostMapping
       public ResponseEntity<EnderecoClientes> criarEnderecoCliente(@RequestBody EnderecoClientes enderecoCliente) {

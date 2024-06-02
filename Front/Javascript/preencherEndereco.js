@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Verificar ID do cliente na URL
   const urlParams = new URLSearchParams(window.location.search);
   const userId = urlParams.get("id");
 
@@ -38,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
       event.preventDefault();
 
       const userData = {
-        id: userId,
+        id_cliente: userId,
         cep: cepInput.value,
         logradouro: logradouroInput.value,
         numero: numeroInput.value,

@@ -17,7 +17,7 @@ function login() {
   })
     .then((response) => {
       if (response.ok) {
-        return response.json(); 
+        return response.json();
       } else if (response.status === 400) {
         throw new Error("Acesso negado. Verifique suas credenciais.");
       } else {
@@ -25,10 +25,10 @@ function login() {
       }
     })
     .then((data) => {
-      
       const clienteId = data.clienteId;
       localStorage.setItem("loggedIn", true);
       localStorage.setItem("clienteId", clienteId);
+      localStorage.setItem("idCliente", clienteId);
       window.location.href = "/Front/Html/UserMenu.html";
     })
     .catch((error) => {

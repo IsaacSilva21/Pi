@@ -1,5 +1,6 @@
 package br.com.GamesForYou.GamesForYou.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,16 +11,26 @@ import br.com.GamesForYou.GamesForYou.repository.IEnderecoClientes;
 
 @Service
 public class EnderecoClientesService {
-    private IEnderecoClientes repository;
+    private final IEnderecoClientes repository;
 
     public EnderecoClientesService(IEnderecoClientes repository) {
         this.repository = repository;
     }
 
-    public List<EnderecoClientes> listarEnderecosClientes() {
-        List<EnderecoClientes> lista = repository.findAll();
-        return lista;
+    public List<EnderecoClientes> listarEnderecosPorIdCliente(Integer idCliente) {
+        List<EnderecoClientes> enderecosPorIdCliente = new ArrayList<>();
+        List<EnderecoClientes> todosEnderecos = repository.findAll();
+        for (EnderecoClientes endereco : todosEnderecos) {
+            if (endereco.getId_cliente().equals(idCliente)) { // Aqui está usando getId_cliente()
+                enderecosPorIdCliente.add(endereco);
+            }
+        }
+        return enderecosPorIdCliente;
     }
+    // outros métodos do serviço...
+
+
+
 
     public EnderecoClientes criarEnderecoCliente(EnderecoClientes enderecoCliente) {
         EnderecoClientes enderecoClienteNovo = repository.save(enderecoCliente);

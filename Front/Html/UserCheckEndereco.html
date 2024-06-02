@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Games For You 🎮</title>
-  <link rel="stylesheet" href="/Front/Css/UserResumo.css">
+  <link rel="stylesheet" href="/Front/Css/UserCheckEndereco.css">
 </head>
 
 <body>
@@ -37,17 +37,13 @@
     <div class="separacao">
       <div class="info">
         <p class="resumo" name="resumo">Escolha o Endereço</p>
-        <div class="itens"></div>
-        <button class="buttonadd" id="buttonadd">Ir para CheckOut</button>
+        <div class="renderizados">
+          <ul id="listaEnderecos"></ul>
+        </div>
+
       </div>
     </div>
     <script src="/Front/Javascript/UserCheckEndereco.js"></script>
-    <script>
-      var botao = document.getElementById('buttonadd');
-      botao.addEventListener('click', function () {
-        window.location.href = "UserCheck.html";
-      });
-    </script>
 
 </body>
 
