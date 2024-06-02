@@ -185,20 +185,19 @@ function calcularFrete(totalValor) {
         return;
       }
 
-      // Exibe o nome da rua
       enderecoDisplay.textContent = `Endereço: ${data.logradouro}, ${data.bairro}, ${data.localidade} - ${data.uf}`;
 
-      // Gera um valor aleatório para o frete
-      const frete = (Math.random() * (50 - 10) + 10).toFixed(2); // Gera valor entre 10 e 50
-
-      // Calcula o valor total com frete
+      const frete = (Math.random() * (50 - 10) + 10).toFixed(2);
       const totalComFrete = (
         parseFloat(totalValor) + parseFloat(frete)
       ).toFixed(2);
 
-      // Exibe o valor do frete e o total com frete
       resultadoFrete.innerHTML = `O valor do frete é R$ ${frete}.`;
       totalElement.textContent = `Total: R$ ${totalComFrete}`;
+      const itemValue = totalComFrete;
+      localStorage.setItem("precoCarrinho", itemValue);
+      localStorage.setItem("nomeProduto", pNome);
+      localStorage.setItem("quantidadePro", pQuantidade);
     })
     .catch((error) => {
       console.error("Erro ao buscar o endereço:", error);

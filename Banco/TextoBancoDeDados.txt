@@ -72,19 +72,18 @@ CREATE TABLE carrinho (
 CREATE TABLE pedidos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     valor DECIMAL(10, 2) NOT NULL CHECK (valor >= 0.00 AND valor <= 999999.99),
+    nome_produto VARCHAR(255),
     quantidade INT NOT NULL CHECK (quantidade >= 0 AND quantidade <= 1000),
-    nomeDoCli VARCHAR(200) NOT NULL,
     cep VARCHAR(9) NOT NULL,
     logradouro VARCHAR(255) NOT NULL,
     numero VARCHAR(255),
-    complemento VARCHAR(255),
     bairro VARCHAR(255) NOT NULL,
     cidade VARCHAR(255) NOT NULL,
     uf VARCHAR(2) NOT NULL,
     status VARCHAR(255) NOT NULL,
     id_cliente INT NOT NULL,
-    metodoPag VARCHAR(255) NOT NULL
+    metodoPag INTEGER NOT NULL CHECK (metodoPag >= 0 AND metodoPag <= 3)
 );
 
-select * from carrinho; 
-drop table carrinho;
+select * from pedidos; 
+drop table pedidos;

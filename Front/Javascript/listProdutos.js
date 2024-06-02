@@ -34,7 +34,7 @@ function listarProdutos() {
         divProduto.appendChild(nomeProduto);
         nomeProduto.style.cursor = "pointer";
         nomeProduto.addEventListener("click", function () {
-          window.location.href = `telaProduto.html?id=${produto.id}`;
+          window.location.href = `UserProduto.html?id=${produto.id}`;
         });
 
         const precoProduto = document.createElement("span");
@@ -75,7 +75,7 @@ function listarProdutos() {
             })
             .then((data) => {
               console.log("Produto ativado:", data);
-              listarProdutos(); // Atualiza a lista de usuários
+              listarProdutos();
             })
             .catch((error) => {
               console.error("Erro:", error);

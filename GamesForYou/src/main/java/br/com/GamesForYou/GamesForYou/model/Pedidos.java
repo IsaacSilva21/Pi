@@ -20,7 +20,7 @@ import lombok.Data;
 @Entity
 @Table(name = "pedidos") 
 public class Pedidos {
-        
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -31,50 +31,51 @@ public class Pedidos {
     @DecimalMax(value = "999999.99", message = "O preço não pode ser maior que 999999.99") 
     @Column(name = "valor", precision = 10, scale = 2, nullable = false)
     private BigDecimal valor;
-   
+
+    @NotBlank(message = "Nome do produto é obrigatório")
+    @Column(name = "nome_produto", length = 255, nullable = true)
+    private String nomeProduto;
+
     @NotNull(message = "A quantidade é obrigatória")
     @Min(value = 0, message = "A quantidade não pode ser negativa") 
     @Max(value = 1000, message = "A quantidade não pode ser maior que 1000") 
     @Column(name = "quantidade", nullable = false)
     private Integer quantidade;
 
-    @NotBlank(message = "O nome é obrigatório")
-    @Column(name = "nomeDoCli", length = 200, nullable = true)
-    private String nomeDoCli;
- 
     @NotBlank(message = "CEP é obrigatório!")
-    @Column(name = "cep", length = 9, nullable = true)
+    @Column(name = "cep", length = 9, nullable = false)
     private String cep;
- 
+
     @NotBlank(message = "Logradouro é obrigatório!")
-    @Column(name = "logradouro", nullable = true)
+    @Column(name = "logradouro", nullable = false)
     private String logradouro;
- 
+
     @Column(name = "numero", nullable = true)
     private String numero;
- 
-    @Column(name = "complemento", nullable = true)
-    private String complemento;
- 
+
     @NotBlank(message = "Bairro é obrigatório!")
-    @Column(name = "bairro", nullable = true)
+    @Column(name = "bairro", nullable = false)
     private String bairro;
- 
+
     @NotBlank(message = "Cidade é obrigatória!")
-    @Column(name = "cidade", nullable = true)
+    @Column(name = "cidade", nullable = false)
     private String cidade;
- 
+
     @NotBlank(message = "UF é obrigatória!")
-    @Column(name = "uf", length = 2, nullable = true)
+    @Column(name = "uf", length = 2, nullable = false)
     private String uf;
- 
+
+    @NotBlank(message = "O status é obrigatório")
     @Column(name = "status", nullable = false)
     private String status;
 
+    @NotNull(message = "O id do cliente é obrigatório")
     @Column(name = "id_cliente", nullable = false)
     private Integer idCliente;
 
-    @NotBlank(message = "O método de pagamento é obrigatório")
+    @NotNull(message = "O método de pagamento é obrigatório")
+    @Min(value = 0, message = "O método de pagamento deve ser no mínimo 0")
+    @Max(value = 3, message = "O método de pagamento deve ser no máximo 3")
     @Column(name = "metodoPag", nullable = false)
-    private String metodoPag;
+    private Integer metodoPag;
 }

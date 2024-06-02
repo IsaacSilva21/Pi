@@ -31,6 +31,13 @@ document.addEventListener("DOMContentLoaded", function () {
           divEndereco.className = "div-endereco";
           divEndereco.style.cursor = "pointer";
           divEndereco.addEventListener("click", function () {
+            localStorage.setItem("cepEndereco", endereco.cep);
+            localStorage.setItem("logradouro", endereco.logradouro);
+            localStorage.setItem("numero", endereco.numero);
+            localStorage.setItem("bairro", endereco.bairro);
+            localStorage.setItem("cidade", endereco.cidade);
+            localStorage.setItem("uf", endereco.uf);
+
             window.location.href = "UserCheck.html";
           });
 
@@ -68,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       })
       .catch(function (error) {
-        console.error("Erro ao carregar os enderecos:", error);
+        console.error("Erro ao carregar os endereços:", error);
       });
   }
 });

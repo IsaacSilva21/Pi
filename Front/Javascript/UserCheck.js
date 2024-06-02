@@ -1,4 +1,18 @@
 document.addEventListener("DOMContentLoaded", function () {
+  const clienteId = localStorage.getItem("clienteId");
+  const precoCarrinho = localStorage.getItem("precoCarrinho");
+  const cepEndereco = localStorage.getItem("cepEndereco");
+  const logradouro = localStorage.getItem("logradouro");
+  const numero = localStorage.getItem("numero");
+  const bairro = localStorage.getItem("bairro");
+  const cidade = localStorage.getItem("cidade");
+  const uf = localStorage.getItem("uf");
+  const nomeProduto = localStorage.getItem("nomeProduto");
+  const quantidadePro = localStorage.getItem("quantidadePro");
+
+  const precoElement = document.getElementById("preco");
+  precoElement.textContent = `R$${precoCarrinho}`;
+
   const infoElement = document.querySelector(".info");
 
   document.getElementById("inputBoleto").style.display = "none";
@@ -30,4 +44,49 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("inputQuan").style.display = "block";
     }
   });
+
+  const formulario = document.getElementById("formulario");
+  formulario.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const Ipag = document.querySelector(".forma").value;
+
+    const userData = {
+      valor: precoCarrinho,
+      nome_produto: nomeProduto,
+      quantidade: quantidadePro,
+      cep: cepEndereco,
+      logradouro: logradouro,
+      numero: numero,
+      bairro: bairro,
+      cidade: cidade,
+      uf: uf,
+      status: "Pago",
+      id_cliente: clienteId,
+      metodoPag: Ipag,
+    };
+
+    fetch("http://localhost:8080/pedidos", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    })
+      .then(function (res) {
+        if (res.ok) {
+          console.log("Pedido criado com sucesso");
+          limpar();
+        } else {
+          console.error("Erro ao criar o pedido:", res.statusText);
+        }
+      })
+      .catch(function (error) {
+        console.error("Erro ao enviar os dados:", error);
+      });
+  });
+
+  function limpar() {
+    formulario.reset();
+  }
 });

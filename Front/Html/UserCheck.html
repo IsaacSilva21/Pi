@@ -37,28 +37,30 @@
     <div class="separacao">
       <div class="info">
         <p class="pagamento" name="pagamento">Pagamento</p>
-        <select class="forma" name="forma" id="forma" required>
+        <form id="formulario">
+          <select class="forma" name="forma" id="forma" required>
 
-          <option value="1">Boleto</option>
-          <option value="2">Cartão</option>
+            <option value="1">Boleto</option>
+            <option value="2">Cartão</option>
 
-        </select>
-        <input type="text" id="inputBoleto" placeholder="Boleto Info">
-        <input type="text" id="inputNum" placeholder="Número do Cartão">
-        <input type="text" id="inputCod" placeholder="Código Verificador">
-        <input type="text" id="inputNom" placeholder="Nome Completo">
-        <input type="text" id="inputData" placeholder="Data de Vencimento">
-        <input type="text" id="inputQuan" placeholder="Quantidade de Parcelas">
-        <p class="preco">R$1000</p>
+          </select>
+          <input type="text" id="inputBoleto" placeholder="Boleto Info">
+          <input type="text" id="inputNum" placeholder="Número do Cartão">
+          <input type="text" id="inputCod" placeholder="Código Verificador">
+          <input type="text" id="inputNom" placeholder="Nome Completo">
+          <input type="text" id="inputData" placeholder="Data de Vencimento">
+          <input type="text" id="inputQuan" placeholder="Quantidade de Parcelas">
+          <p class="preco" id="preco">R$1000</p>
 
-        <button class="buttonadd" id="buttonadd">Finalizar Pagamento</button>
+          <button class="buttonadd" id="buttonadd" type="submit">Finalizar Pagamento</button>
       </div>
+      </form>
     </div>
     <script src="/Front/Javascript/UserCheck.js"></script>
     <script>
       var botao = document.getElementById('buttonadd');
       botao.addEventListener('click', function () {
-        window.location.href = "UserResumo.html";
+
       });
     </script>
 </body>

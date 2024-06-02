@@ -19,21 +19,21 @@ public class PedidosController {
         this.pedidosService = pedidosService;
     }
 
-    // List all orders
+    
     @GetMapping
     public ResponseEntity<List<Pedidos>> listarPedidos() {
         List<Pedidos> lista = pedidosService.listarPedidos();
         return ResponseEntity.ok(lista);
     }
 
-    // Create a new order
+    
     @PostMapping
     public ResponseEntity<Pedidos> criarPedido(@RequestBody Pedidos pedido) {
         Pedidos novoPedido = pedidosService.criarPedido(pedido);
         return ResponseEntity.status(201).body(novoPedido);
     }
 
-    // Update an existing order
+  
     @PutMapping("/{id}")
     public ResponseEntity<Pedidos> editarPedido(@PathVariable Integer id, @RequestBody Pedidos pedidoAtualizado) {
         Pedidos pedidoEditado = pedidosService.editarPedido(id, pedidoAtualizado);
@@ -44,7 +44,6 @@ public class PedidosController {
         }
     }
 
-    // Get an order by ID
     @GetMapping("/{id}")
     public ResponseEntity<Pedidos> buscarPedidoPorId(@PathVariable Integer id) {
         Pedidos pedido = pedidosService.buscarPedidoPorId(id);
