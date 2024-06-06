@@ -31,6 +31,7 @@ function listarCarrinho() {
 
         const pNome = document.createElement("span");
         pNome.textContent = `${carrinhoItem.nome}`;
+        pNome.id = "pNome";
 
         const pValor = document.createElement("span");
         pValor.textContent = `R$${carrinhoItem.valor}`;
@@ -38,6 +39,7 @@ function listarCarrinho() {
         const pQuantidade = document.createElement("span");
         pQuantidade.textContent = `${carrinhoItem.quantidade}`;
         pQuantidade.className = "quantidade";
+        pQuantidade.id = "pQuantidade";
 
         totalValor += parseFloat(carrinhoItem.valor) * carrinhoItem.quantidade;
 
@@ -195,9 +197,11 @@ function calcularFrete(totalValor) {
       resultadoFrete.innerHTML = `O valor do frete é R$ ${frete}.`;
       totalElement.textContent = `Total: R$ ${totalComFrete}`;
       const itemValue = totalComFrete;
+      const pNome = document.getElementById("pNome");
+      const pQuantidade = document.getElementById("pQuantidade");
       localStorage.setItem("precoCarrinho", itemValue);
-      localStorage.setItem("nomeProduto", pNome);
-      localStorage.setItem("quantidadePro", pQuantidade);
+      localStorage.setItem("nomeProduto", pNome.textContent);
+      localStorage.setItem("quantidadePro", pQuantidade.textContent);
     })
     .catch((error) => {
       console.error("Erro ao buscar o endereço:", error);

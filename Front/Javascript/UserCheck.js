@@ -12,6 +12,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const precoElement = document.getElementById("preco");
   precoElement.textContent = `R$${precoCarrinho}`;
+  
+  alert(`clienteId: ${clienteId}`);
+  alert(`precoCarrinho: ${precoCarrinho}`);
+  alert(`cepEndereco: ${cepEndereco}`);
+  alert(`logradouro: ${logradouro}`);
+  alert(`numero: ${numero}`);
+  alert(`bairro: ${bairro}`);
+  alert(`cidade: ${cidade}`);
+  alert(`uf: ${uf}`);
+  alert(`nomeProduto: ${nomeProduto}`);
+  alert(`quantidadePro: ${quantidadePro}`);
 
   const infoElement = document.querySelector(".info");
 
@@ -61,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
       bairro: bairro,
       cidade: cidade,
       uf: uf,
-      status: "Pago",
+      status: "aguardando confirmação do pagamento",
       id_cliente: clienteId,
       metodoPag: Ipag,
     };
