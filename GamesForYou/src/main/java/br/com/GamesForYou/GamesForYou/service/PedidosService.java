@@ -74,4 +74,13 @@ public class PedidosService {
             return null;
         }
     }
+    public Pedidos buscarUltimoPedido() {
+        List<Pedidos> todosPedidos = repository.findAll();
+        if (!todosPedidos.isEmpty()) {
+            return todosPedidos.get(todosPedidos.size() - 1);
+        } else {
+            return null;
+        }
+    }
+
 }

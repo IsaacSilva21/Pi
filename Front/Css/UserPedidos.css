@@ -108,6 +108,16 @@ nav ul li:hover {
   margin-top: 30px;
 }
 
+.div-pedido {
+  border: 1px solid #fbb710;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.div-pedido span {
+  padding-right: 10px;
+}
 .buttonadd {
   background-color: #fbb710;
   padding: 20px;

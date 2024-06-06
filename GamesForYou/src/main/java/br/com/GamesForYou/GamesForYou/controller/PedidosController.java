@@ -91,6 +91,12 @@ public class PedidosController {
         return ResponseEntity.ok().body(pedidos);
     }
 
+    @GetMapping("/ultimo")
+    public ResponseEntity<Pedidos> buscarUltimoPedido() {
+        Pedidos ultimoPedido = pedidosService.buscarUltimoPedido();
+        return ResponseEntity.ok().body(ultimoPedido);
+    }
+
     // Classe interna para receber a requisição de atualização de status
     public static class StatusUpdateRequest {
         private String status;

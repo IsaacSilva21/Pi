@@ -13,17 +13,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const precoElement = document.getElementById("preco");
   precoElement.textContent = `R$${precoCarrinho}`;
 
-  alert(`clienteId: ${clienteId}`);
-  alert(`precoCarrinho: ${precoCarrinho}`);
-  alert(`cepEndereco: ${cepEndereco}`);
-  alert(`logradouro: ${logradouro}`);
-  alert(`numero: ${numero}`);
-  alert(`bairro: ${bairro}`);
-  alert(`cidade: ${cidade}`);
-  alert(`uf: ${uf}`);
-  alert(`nomeProduto: ${nomeProduto}`);
-  alert(`quantidadePro: ${quantidadePro}`);
-
   const infoElement = document.querySelector(".info");
 
   document.getElementById("inputBoleto").style.display = "none";
@@ -87,6 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .then(function (res) {
         if (res.ok) {
           console.log("Pedido criado com sucesso");
+          window.location.href = `UserResumo.html`;
           limpar();
         } else {
           console.error("Erro ao criar o pedido:", res.statusText);
