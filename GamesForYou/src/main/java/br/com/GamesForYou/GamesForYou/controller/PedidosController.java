@@ -74,4 +74,34 @@ public class PedidosController {
             return ResponseEntity.status(404).build();
         }
     }
+
+    // Novo método para atualizar o status do pedido
+    @PutMapping("/{id}/status")
+    public ResponseEntity<Pedidos> atualizarStatus(@PathVariable Integer id, @RequestBody StatusUpdateRequest request) {
+        Pedidos pedidoAtualizado = pedidosService.atualizarStatus(id, request.getStatus());
+        if (pedidoAtualizado != null) {
+            return ResponseEntity.ok(pedidoAtualizado);
+        } else {
+            return ResponseEntity.status(404).build();
+        }
+    }
+    @GetMapping("/cliente/{idCliente}")
+    public ResponseEntity<List<Pedidos>> listarPedidosPorCliente(@PathVariable Integer idCliente) {
+        List<Pedidos> pedidos = pedidosService.listarPedidosPorCliente(idCliente);
+        return ResponseEntity.ok().body(pedidos);
+    }
+
+    // Classe interna para receber a requisição de atualização de status
+    public static class StatusUpdateRequest {
+        private String status;
+
+        // Getter e Setter
+        public String getStatus() {
+            return status;
+        }
+
+        public void setStatus(String status) {
+            this.status = status;
+        }
+    }
 }

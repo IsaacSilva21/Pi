@@ -1,5 +1,6 @@
 package br.com.GamesForYou.GamesForYou.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,17 +17,25 @@ public class PedidosService {
         this.repository = repository;
     }
 
-
     public List<Pedidos> listarPedidos() {
         return repository.findAll();
     }
 
- 
     public Pedidos criarPedido(Pedidos pedido) {
         return repository.save(pedido);
     }
 
-   
+      public List<Pedidos> listarPedidosPorCliente(Integer idCliente) {
+        List<Pedidos> pedidosPorCliente = new ArrayList<>();
+        List<Pedidos> todosPedidos = repository.findAll();
+        for (Pedidos pedido : todosPedidos) {
+            if (pedido.getClienteId().equals(idCliente)) { // Supondo que o método para obter o ID do cliente seja getClienteId()
+                pedidosPorCliente.add(pedido);
+            }
+        }
+        return pedidosPorCliente;
+    }
+
     public Pedidos editarPedido(Integer id, Pedidos pedidoAtualizado) {
         Optional<Pedidos> optionalPedido = repository.findById(id);
 
@@ -49,9 +58,20 @@ public class PedidosService {
         }
     }
 
- 
     public Pedidos buscarPedidoPorId(Integer id) {
         Optional<Pedidos> optionalPedido = repository.findById(id);
         return optionalPedido.orElse(null);
+    }
+
+    // Novo método para atualizar o status do pedido
+    public Pedidos atualizarStatus(Integer id, String status) {
+        Optional<Pedidos> optionalPedido = repository.findById(id);
+        if (optionalPedido.isPresent()) {
+            Pedidos pedido = optionalPedido.get();
+            pedido.setStatus(status);
+            return repository.save(pedido);
+        } else {
+            return null;
+        }
     }
 }

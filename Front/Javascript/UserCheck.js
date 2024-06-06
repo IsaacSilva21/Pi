@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const precoElement = document.getElementById("preco");
   precoElement.textContent = `R$${precoCarrinho}`;
-  
+
   alert(`clienteId: ${clienteId}`);
   alert(`precoCarrinho: ${precoCarrinho}`);
   alert(`cepEndereco: ${cepEndereco}`);
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const userData = {
       valor: precoCarrinho,
-      nome_produto: nomeProduto,
+      nomeproduto: nomeProduto,
       quantidade: quantidadePro,
       cep: cepEndereco,
       logradouro: logradouro,
@@ -73,8 +73,8 @@ document.addEventListener("DOMContentLoaded", function () {
       cidade: cidade,
       uf: uf,
       status: "aguardando confirmação do pagamento",
-      id_cliente: clienteId,
-      metodoPag: Ipag,
+      idcliente: clienteId,
+      metodopag: Ipag,
     };
 
     fetch("http://localhost:8080/pedidos", {

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/Front/Css/listUsuarios.css">
+  <link rel="stylesheet" href="/Front/Css/listPedidos.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet">
@@ -16,28 +16,20 @@
     <div class="box">
       <h1>Lista de Usuarios</h1>
       <div class="cabecalho">
-        <span class="nome">Nome do Cliente</span>
-        <span class="email">Numero do Pedido</span>
-        <span class="status">Status</span>
-        <span class="nivel">Nivel</span>
-        <span class="alterar">Alterar</span>
-        <span class="hab">Habilitar/Desabilitar</span>
+        <span class="nome">ID do Cliente</span>
+        <span class="email">ID do Pedido</span>
+        <span class="status">Valor</span>
+        <span class="nivel">Forma de Pagamento</span>
+        <span class="alterar">Status</span>
       </div>
       <div class="renderizados">
-        <ul id="listaUsuarios"></ul>
+        <ul id="listaPedidos"></ul>
       </div>
 
     </div>
   </div>
 
-  <script>
-    var botao = document.getElementById('add');
-
-
-    botao.addEventListener('click', function () {
-
-      window.location.href = `Cadastro.html`
-    });</script>
+  <script src="/Front/Javascript/listPedidos.js"></script>
 </body>
 
 </html>

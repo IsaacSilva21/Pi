@@ -33,8 +33,8 @@ public class Pedidos {
     private BigDecimal valor;
 
     @NotBlank(message = "Nome do produto é obrigatório")
-    @Column(name = "nomeProduto ", length = 255, nullable = true)
-    private String nomeProduto;
+    @Column(name = "nomeproduto ", length = 255, nullable = true)
+    private String nomeproduto;
 
     @NotNull(message = "A quantidade é obrigatória")
     @Min(value = 0, message = "A quantidade não pode ser negativa") 
@@ -70,10 +70,18 @@ public class Pedidos {
     private String status;
 
     @NotNull(message = "O id do cliente é obrigatório")
-   @Column(name = "idCliente", nullable = false)
-    private Integer idCliente;
+   @Column(name = "idcliente", nullable = false)
+    private Integer idcliente;
 
     @NotNull(message = "o metodo é obrigatorio")
-    @Column(name = "metodoPag", nullable = false)
-    private Integer metodoPag;
+    @Column(name = "metodopag", nullable = false)
+    private Integer metodopag;
+
+    public Integer getClienteId() {
+        return this.idcliente;
+    }
+    
+    public void setId_cliente(Integer idcliente) {
+        this.idcliente = idcliente;
+    }
 }
