@@ -36,7 +36,7 @@ public class Usuario {
     @Column(name = "senha", columnDefinition  = "TEXT", nullable = true)
     private String senha;
 
-  // @ValidCPF
+  
     @NotBlank(message = "O cpf é obrigatório")
     @Column(name = "cpf", length = 11, nullable = true, unique = true)
     private String cpf;

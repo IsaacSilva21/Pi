@@ -75,7 +75,7 @@ public class PedidosController {
         }
     }
 
-    // Novo método para atualizar o status do pedido
+    
     @PutMapping("/{id}/status")
     public ResponseEntity<Pedidos> atualizarStatus(@PathVariable Integer id, @RequestBody StatusUpdateRequest request) {
         Pedidos pedidoAtualizado = pedidosService.atualizarStatus(id, request.getStatus());
@@ -97,11 +97,10 @@ public class PedidosController {
         return ResponseEntity.ok().body(ultimoPedido);
     }
 
-    // Classe interna para receber a requisição de atualização de status
     public static class StatusUpdateRequest {
         private String status;
 
-        // Getter e Setter
+        
         public String getStatus() {
             return status;
         }

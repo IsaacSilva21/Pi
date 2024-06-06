@@ -24,10 +24,7 @@
           List<EnderecoClientes> enderecosClientes = enderecoClientesService.listarEnderecosPorIdCliente(idCliente);
           return ResponseEntity.ok().body(enderecosClientes);
       }
-      // outros métodos do controlador...
-  
-
-  
+    
       @PostMapping
       public ResponseEntity<EnderecoClientes> criarEnderecoCliente(@RequestBody EnderecoClientes enderecoCliente) {
           EnderecoClientes novoEnderecoCliente = enderecoClientesService.criarEnderecoCliente(enderecoCliente);

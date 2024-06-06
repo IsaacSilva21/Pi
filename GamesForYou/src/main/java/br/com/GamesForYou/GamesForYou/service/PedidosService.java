@@ -29,7 +29,7 @@ public class PedidosService {
         List<Pedidos> pedidosPorCliente = new ArrayList<>();
         List<Pedidos> todosPedidos = repository.findAll();
         for (Pedidos pedido : todosPedidos) {
-            if (pedido.getClienteId().equals(idCliente)) { // Supondo que o método para obter o ID do cliente seja getClienteId()
+            if (pedido.getClienteId().equals(idCliente)) { 
                 pedidosPorCliente.add(pedido);
             }
         }
@@ -63,7 +63,7 @@ public class PedidosService {
         return optionalPedido.orElse(null);
     }
 
-    // Novo método para atualizar o status do pedido
+    
     public Pedidos atualizarStatus(Integer id, String status) {
         Optional<Pedidos> optionalPedido = repository.findById(id);
         if (optionalPedido.isPresent()) {

@@ -21,13 +21,13 @@ public class EnderecoClientesService {
         List<EnderecoClientes> enderecosPorIdCliente = new ArrayList<>();
         List<EnderecoClientes> todosEnderecos = repository.findAll();
         for (EnderecoClientes endereco : todosEnderecos) {
-            if (endereco.getId_cliente().equals(idCliente)) { // Aqui está usando getId_cliente()
+            if (endereco.getId_cliente().equals(idCliente)) { 
                 enderecosPorIdCliente.add(endereco);
             }
         }
         return enderecosPorIdCliente;
     }
-    // outros métodos do serviço...
+    
 
 
 

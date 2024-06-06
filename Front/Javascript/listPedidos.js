@@ -38,7 +38,7 @@ function listarPedidos() {
           { texto: "Entregue", valor: "Entregue" },
         ];
 
-        // Adiciona cada opção ao <select>
+      
         opcoes.forEach((opcao) => {
           const option = document.createElement("option");
           option.text = opcao.texto;
@@ -49,7 +49,7 @@ function listarPedidos() {
           pNivel.add(option);
         });
 
-        // Adicionar evento de mudança para atualizar o status
+        
         pNivel.addEventListener("change", function () {
           const novoStatus = this.value;
           fetch(`http://localhost:8080/pedidos/${pedido.id}/status`, {

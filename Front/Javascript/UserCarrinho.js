@@ -58,7 +58,7 @@ function listarCarrinho() {
             console.error("Erro ao obter imagem do produto:", error);
           });
 
-        // Botão Mais
+       
         const btnMais = document.createElement("button");
         btnMais.textContent = "+";
         btnMais.className = "btnMais";
@@ -66,7 +66,7 @@ function listarCarrinho() {
           atualizarQuantidade(carrinhoItem.id, carrinhoItem.quantidade + 1);
         });
 
-        // Botão Menos
+        
         const btnMenos = document.createElement("button");
         btnMenos.textContent = "-";
         btnMenos.className = "btnMenos";
@@ -76,7 +76,6 @@ function listarCarrinho() {
           }
         });
 
-        // Botão Deletar
         const btnDeletar = document.createElement("button");
         btnDeletar.textContent = "X";
         btnDeletar.className = "btnDeletar";
@@ -98,10 +97,9 @@ function listarCarrinho() {
 
       const totalElement = document.createElement("div");
       totalElement.className = "total-valor";
-      totalElement.id = "totalValor"; // Adiciona o ID aqui
+      totalElement.id = "totalValor";
       totalElement.textContent = `Total: R$ ${totalValor.toFixed(2)}`;
 
-      // Adiciona o campo para cálculo de frete
       const freteDiv = document.createElement("div");
       freteDiv.className = "frete";
       freteDiv.innerHTML = `
@@ -110,11 +108,12 @@ function listarCarrinho() {
         <button class="buttoncalc">Calcular Frete</button>
         <p id="resultadoFrete"></p>
         <p id="endereco"></p>
+        <div id="opcoesFrete"></div>
       `;
       listaCarrinho.appendChild(freteDiv);
       listaCarrinho.appendChild(totalElement);
 
-      // Adiciona evento ao botão de calcular frete
+      
       document
         .querySelector(".buttoncalc")
         .addEventListener("click", function () {
@@ -169,16 +168,15 @@ function calcularFrete(totalValor) {
   const cepInput = document.getElementById("cep");
   const resultadoFrete = document.getElementById("resultadoFrete");
   const enderecoDisplay = document.getElementById("endereco");
-  const totalElement = document.getElementById("totalValor"); // Obtém o elemento pelo ID
+  const opcoesFrete = document.getElementById("opcoesFrete");
+  const totalElement = document.getElementById("totalValor");
   const cep = cepInput.value;
 
-  // Verifica se o CEP foi preenchido
   if (cep === "") {
     resultadoFrete.textContent = "Por favor, insira um CEP.";
     return;
   }
 
-  // Busca o endereço pelo CEP usando a API do ViaCEP
   fetch(`https://viacep.com.br/ws/${cep}/json/`)
     .then((response) => response.json())
     .then((data) => {
@@ -189,23 +187,44 @@ function calcularFrete(totalValor) {
 
       enderecoDisplay.textContent = `Endereço: ${data.logradouro}, ${data.bairro}, ${data.localidade} - ${data.uf}`;
 
-      const frete = (Math.random() * (50 - 10) + 10).toFixed(2);
-      const totalComFrete = (
-        parseFloat(totalValor) + parseFloat(frete)
-      ).toFixed(2);
+      const freteEconomico = (Math.random() * (30 - 10) + 10).toFixed(2);
+      const freteNormal = (Math.random() * (40 - 20) + 20).toFixed(2);
+      const freteExpresso = (Math.random() * (50 - 30) + 30).toFixed(2);
 
-      resultadoFrete.innerHTML = `O valor do frete é R$ ${frete}.`;
-      totalElement.textContent = `Total: R$ ${totalComFrete}`;
-      const itemValue = totalComFrete;
-      const pNome = document.getElementById("pNome");
-      const pQuantidade = document.getElementById("pQuantidade");
-      localStorage.setItem("precoCarrinho", itemValue);
-      localStorage.setItem("nomeProduto", pNome.textContent);
-      localStorage.setItem("quantidadePro", pQuantidade.textContent);
+      const prazoEconomico = 7; 
+      const prazoNormal = 5; 
+      const prazoExpresso = 3; 
+
+      opcoesFrete.innerHTML = `
+        <label for="freteOptions">Escolha a opção de frete:</label>
+        <select id="freteOptions">
+          <option value="${freteEconomico}" data-prazo="${prazoEconomico}">Frete Econômico: R$ ${freteEconomico} (Até ${prazoEconomico} dias)</option>
+          <option value="${freteNormal}" data-prazo="${prazoNormal}">Frete Normal: R$ ${freteNormal} (Até ${prazoNormal} dias)</option>
+          <option value="${freteExpresso}" data-prazo="${prazoExpresso}">Frete Expresso: R$ ${freteExpresso} (Até ${prazoExpresso} dias)</option>
+        </select>
+      `;
+
+      const freteOptions = document.getElementById("freteOptions");
+      freteOptions.addEventListener("change", function () {
+        const selectedFrete = parseFloat(freteOptions.value);
+        const selectedPrazo = freteOptions.options[freteOptions.selectedIndex].dataset.prazo;
+        const totalComFrete = (parseFloat(totalValor) + selectedFrete).toFixed(2);
+
+        resultadoFrete.innerHTML = `O valor do frete selecionado é R$ ${selectedFrete.toFixed(2)} e o prazo é de até ${selectedPrazo} dias.`;
+        totalElement.textContent = `Total: R$ ${totalComFrete}`;
+
+        const itemValue = totalComFrete;
+        const pNome = document.getElementById("pNome");
+        const pQuantidade = document.getElementById("pQuantidade");
+        localStorage.setItem("precoCarrinho", itemValue);
+        localStorage.setItem("nomeProduto", pNome.textContent);
+        localStorage.setItem("quantidadePro", pQuantidade.textContent);
+      });
+
+      freteOptions.dispatchEvent(new Event('change'));
     })
     .catch((error) => {
       console.error("Erro ao buscar o endereço:", error);
-      enderecoDisplay.textContent =
-        "Erro ao buscar o endereço. Tente novamente mais tarde.";
+      enderecoDisplay.textContent = "Erro ao buscar o endereço. Tente novamente mais tarde.";
     });
 }
