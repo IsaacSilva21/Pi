@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
   } else {
     console.log("Cliente ID no localStorage:", clienteId);
 
-    // Verifica se clienteId está definido antes de fazer a requisição
+    
     if (clienteId) {
       fetch(`http://localhost:8080/clientes/${clienteId}`)
         .then((response) => response.json())

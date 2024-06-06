@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
       const Icpf = document.querySelector(".cpf");
       const Inivel = document.querySelector(".nivel");
 
-      // Remove a classe de erro antes da verificação
       Icpf.classList.remove("input-error");
 
       if (Isenha.value !== IconfirmarSenha.value) {
@@ -60,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
     console.error("Formulário não encontrado!");
   }
 
-  // Função para validar CPF
+
   function isValidCPF(cpf) {
     cpf = cpf.replace(/[^\d]/g, "");
 

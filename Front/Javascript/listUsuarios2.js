@@ -92,7 +92,7 @@ function listarUsuarios() {
             })
             .then((data) => {
               console.log("Usuário desativado:", data);
-              listarUsuarios(); // Atualiza a lista de usuários
+              listarUsuarios(); 
             })
             .catch((error) => {
               console.error("Erro:", error);

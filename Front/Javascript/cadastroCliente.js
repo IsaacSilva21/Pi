@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const Igenero = document.querySelector(".genero");
       const Idata = document.querySelector(".data");
 
-      // Remove a classe de erro antes da verificação
+      
       Icpf.classList.remove("input-error");
 
       if (!isValidCPF(Icpf.value)) {
